@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - MG</title>
+    <style>
+
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: #444;
+            transition: 0.5s;
+        }
+
+        a:hover {
+            color: #37a1f7;
+        }
+
+        #navbar {
+            padding: 1.5rem 2.5rem;
+            border-bottom: 4px solid #ddd;
+        }
+
+        #navbar-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        #nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 3rem;
+            padding: 2rem 2.5rem;
+        }
+
+        #posts-container {
+            flex: 3 1 0;
+        }
+
+        .post {
+            margin-bottom: 2.5rem;
+        }
+
+        .post img {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .tittle,
+        .description {
+            margin-bottom: 1rem;
+        }
+
+        .tittle {
+            font-size: 2rem;
+        }
+
+        #siderbar {
+            flex: 1 1 0;
+        }
+
+        #search-bar,
+        #categories,
+        #tags {
+            padding: 1.5rem;
+            border: 1px solid #DDD;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+        }
+
+        #search-bar h4,
+        #categories h4,
+        #tags h4 {
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+        }
+
+        #search-bar form {
+            display: flex;
+        }
+
+        #search-bar input {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+        }
+
+        #search-bar input[type="submit"] {
+            cursor: pointer;
+            background-color: #37a1f7;
+            color: #fff;
+            border: none;
+        }
+
+        #categories li {
+            margin-bottom: 1rem;
+        }
+
+        #tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        #tags-container a {
+            background-color: #ddd;
+            padding: 0.5rem 0.7rem;
+            border-radius: 0.3rem;
+        }
+
+        #footer {
+            border-top: 2px solid #ddd;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        #footer h2,
+        #footer p {
+            margin-bottom: 1rem;
+        }
+
+        @media(max-widht: 450px) {
+            .container {
+                flex-wrap: wrap;
+            }
+        }
+         
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav id="navbar">
+            <div id="navbar-inner">
+                <h2>Blog&#128314;Minas</h2>
+                <ul id="nav-links">
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#">Categorias</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main id="posts-container">
+        <article class="post">
+            <img src="https://offloadmedia.feverup.com/belohorizontesecreto.com/wp-content/uploads/2023/03/07102458/51272915639_18c5c690a9_o-1-1024x682.jpg" alt="Bh">
+            <h3 class="tittle"><a href="#">A Capital</a></h3>
+            <p class="description">
+                Belo Horizonte é a capital do estado de Minas Gerais, no sudeste do Brasil. Rodeada de montanhas, a cidade é conhecida pelo enorme Estádio Mineirão. Construído em 1965, o estádio alberga também o Museu Brasileiro do Futebol. Nas proximidades encontra-se a Lagoa da Pampulha e o Conjunto Arquitetónico da Pampulha, que inclui a Igreja de São Francisco de Assis, cujo teto é ondulado e que foi concebida pelo arquiteto modernista brasileiro Oscar Niemeyer. 
+            </p>
+            <a href="Leia mais"></a>
+        </article>
+        <article class="post">
+            <img src="https://www.segueviagem.com.br/wp-content/uploads/2021/01/Parte-da-vista-da-Praca-Tiradentes-Ouro-Preto-Minas-Gerais-Credito-editorial-Luis-War-shutterstock_1730606407.jpg" alt="Ouro Preto">
+            <h3 class="tittle"><a href="#">A Primeira Capital Mineira</a></h3>
+            <p class="description">
+                Ouro Preto é uma cidade colonial na Serra do Espinhaço, na zona leste do Brasil. É conhecida pela arquitetura barroca, que inclui pontes, fontes e praças, e pelas ruas calcetadas íngremes e sinuosas. A Praça central de Tiradentes recebeu o nome do mártir da independência brasileira. Existem várias igrejas e capelas por toda a cidade, incluindo a Igreja de São Francisco de Assis, do século XVIII. 
+            </p>
+            <a href="Leia mais"></a>
+        </article>
+        <article class="post">
+            <img src="https://i0.wp.com/turismodeprimeira.com.br/wp-content/uploads/2023/11/IMG_20170128_174906974_HDR.jpg?resize=1024%2C576&ssl=1" alt="MG">
+            <h3 class="tittle"><a href="#">Natureza</a></h3>
+            <p class="description">
+                Atualmente, as belezas naturais de Minas Gerais incluem a majestosa Cachoeira do Tabuleiro, a terceira maior queda d'água do Brasil, com seus impressionantes 273 metros de altura. Além disso, o estado tem três dos cinco maiores picos do país, sendo o Pico da Bandeira o terceiro mais alto, com 2.892 metros de altitude. 
+            </p>
+            <a href="Leia mais"></a>
+        </article>
+        <article class="post">
+            <img src="https://p2.trrsf.com/image/fget/cf/1200/675/middle/images.terra.com/2023/10/21/634451975-atletico-mg-cruzeiro-tabu-sete-anos-brasileirao-serie-a.jpg" alt="Clássico">
+            <h3 class="tittle"><a href="#">Clássico Mineiro</a></h3>
+            <p class="description">
+                O Clássico Mineiro, também chamado de Superclássico Mineiro, Derby Mineiro ou Galo contra Raposa, é o mais importante clássico de futebol de Minas Gerais e um dos maiores do Brasil, que envolve o Clube Atlético Mineiro e o Cruzeiro Esporte Clube, os principais clubes de Belo Horizonte e dois dos maiores do país. 
+            </p>
+            <a href="Leia mais"></a>
+        </article>
+        </main>
+        <aside id="siderbar">
+            <section id="search-bar">
+                <h4>Buscar</h4>
+                <form>
+                    <input type="text" placeholder="Pesquise no blog">
+                    <input type="submit" value="buscar">
+                </form>
+            </section>
+            <section id="categories">
+                <h4>Categotias</h4>
+                <nav>
+                    <ul>
+                        <li><a href="#">Paisagens</a></li>
+                        <li><a href="#">Pontos Turísticos</a></li>
+                        <li><a href="#">Acomodações</a></li>
+                        <li><a href="#">História</a></li>
+                        <li><a href="#">Esportes</a></li>
+                        <li><a href="#">Curiosidades</a></li>
+                    </ul>
+                </nav>
+            </section>
+            <section id="tags">
+                <h4>Tags</h4>
+                <div id="tags-container">
+                    <a href="#">Lifestyle &#128512;</a>
+                    <a href="#">BH 	&#127750;</a>
+                    <a href="#">Turismo &#128747;</a>
+                    <a href="#">GaloXRaposa	&#128019; Vs &#129418;</a>
+                    <a href="#">Cachoeiras &#127748;</a>
+                    <a href="#">Barroco &#128333;</a>
+                    <a href="#">Queijo &#129472;</a>
+                </div>
+            </section>
+        </aside>
+    </div>
+    <footer id="footer">
+        <h2>Blog&#128314;Minas</h2>
+        <p>os melhores clics de Minas Gerais</p>
+        <p>2024 &copy; Grungefox</p>
+    </footer>
+</body>
+</html>

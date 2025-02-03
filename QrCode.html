@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXYmWAVZupEpyaI018N_InflmjlLq_K-Zw9g&s">
+    <title>QR Code Gerator</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #34db7a;
+        }
+
+        .container {
+            background-color: #fff;
+            height: 260px;
+            width: 400px;
+            border-radius: 10px;
+            padding: 20px;
+            transition: 0.2s;
+        }
+
+        .container.active{
+            height: 500px;
+        }
+
+        #qr-header {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        #qr-header {
+            color: #444;
+            font-size: 0.9rem;
+        }
+
+        #qr-form {
+            margin: 10px 5px;
+        }
+
+        #qr-form input,
+        #qr-form button{
+            width: 100%;
+            height: 55px;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        #qr-form input {
+            border: 1px solid #777;
+            padding: 10px 15px;
+        }
+
+        #qr-form button {
+            background-color: #086824;
+            color: #fff;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            cursor: pointer;
+            opacity: 0.9;
+            transition: 0.4s;
+        }
+
+        #qr-form button:hover {
+            opacity: 1;
+        }
+
+        #qr-code {
+            display: flex;
+            opacity: 0;
+            border: 1px solid #ccc;
+            padding: 30px 0;
+            margin: 20px 15px;
+            display: flex;
+            justify-content: center;
+            border-radius: 5px;
+            transition: 0.5s;
+        }
+
+        .container.active #qr-code {
+            opacity: 1;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+        }
+
+
+        
+        
+    </style>
+</head>
+<body>
+    <div class="container active">
+        <header id="qr-header">
+            <h1>Gerador de QR Code</h1>
+            <p>Insira uma URL ou texto para gerar um QR code!</p>
+        </header>
+        <div id="qr-form">
+            <input type="text" placeholder="Digite a URL ou texto">
+            <button>Gerar QR code</button>
+            <div id="qr-code">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThqynB3ynjWYeXHvi2dNXV6TcCJ-ml3M5KPQ&s" alt="QR code">               
+            </div>
+        </div>
+    </div>
+    
+    <script>
+            const container = document.querySelector(".container");
+            const qrCodeBtn = document.querySelector("#qr-form button");
+
+            const qrCodeInput = document.querySelector("#qr-form input");
+            
+            const qrCodeImg = document.querySelector("#qr-code img");
+
+            function generateQrcode() {
+                const qrCodeInputValue = qrCodeInput.value;
+
+                if(!qrCodeInputValue) return;
+
+                qrCodeBtn.innerText = "Gerando código...";
+
+                qrCodeImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${qrCodeInputValue}`;
+
+                qrCodeImg.addEventListener("load", () => {
+                    container.classList.add("active");
+                    qrCodeBtn.innerText = "código criado!";
+                });
+            }
+
+                qrCodeBtn.addEventListener("click", () => {
+            generateQrcode();
+        });
+
+        qrCodeInput.addEventListener("keydown", (e) => {
+            if(e.code === "Enter") {
+                generateQrcode();
+            }
+        });
+
+
+            qrCodeInput.addEventListener("keyup", () => {
+                if(!qrCodeInput.value) {
+                    container.classList.remove("active");
+                    qrCodeBtn.innerText = "Gerar QRCode...";
+                }
+            });
+        
+
+    </script>
+</body>
+</html>

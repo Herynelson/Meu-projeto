@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitRemind - Seus Lembretes</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+    --primary: #bb86fc;
+    --secondary: #03dac6;
+    --bg: #121212;
+    --surface: #1e1e1e;
+    --text: #ffffff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Poppins', sans-serif;    
+    background-image: url("https://i.metroimg.com/iiGjpAm0SU1ZeYsKUKCRLNaVyZKMI02DeAMeUESpuJc/w:900/q:85/f:webp/plain/https://images.metroimg.com/2024/12/12082931/Mulher-faz-musculacao.jpg");
+    background-size: cover; /* Cobre todo o espaço */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Evita repetição */
+    background-attachment: fixed;
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 450px;
+    background: var(--surface);
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(77, 6, 170, 0.5);
+}
+
+header { text-align: center; margin-bottom: 30px; }
+header h1 span { color: var(--primary); }
+
+.stats {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    flex: 1;
+    background: rgba(255,255,255,0.05);
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid rgba(187, 134, 252, 0.2);
+}
+
+.stat-card .value { font-size: 1.5rem; font-weight: bold; display: block; color: var(--secondary); }
+
+.add-reminder {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+input {
+    background: #2c2c2c;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    color: white;
+    outline: none;
+}
+
+button {
+    background: var(--primary);
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover { opacity: 0.8; transform: translateY(-2px); }
+
+ul { list-style: none; }
+
+li {
+    background: rgba(255,255,255,0.03);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: fadeIn 0.5s ease;
+}
+
+.task-info { display: flex; flex-direction: column; }
+.task-info .time { font-size: 0.8rem; color: var(--primary); }
+
+.delete-btn {
+    background: #cf6679;
+    padding: 5px 10px;
+    font-size: 0.7rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+    
+</style>
+
+    
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Fit<span>Remind</span></h1>
+            <p>Não esqueça de se mover hoje!</p>
+        </header>
+
+        <section class="stats">
+            <div class="stat-card">
+                <span class="label">Concluídos</span>
+                <span class="value" id="completed-count">0</span>
+            </div>
+            <div class="stat-card">
+                <span class="label">Pendentes</span>
+                <span class="value" id="pending-count">0</span>
+            </div>
+        </section>
+
+        <section class="add-reminder">
+            <input type="text" id="exercise-input" placeholder="Qual o exercício? (ex: Yoga)">
+            <input type="time" id="time-input">
+            <button id="add-btn">Agendar</button>
+        </section>
+
+        <section class="reminders-list">
+            <h2>Seus Lembretes</h2>
+            <ul id="task-list">
+                </ul>
+        </section>
+    </div>
+    <script>
+        const addBtn = document.getElementById('add-btn');
+const exerciseInput = document.getElementById('exercise-input');
+const timeInput = document.getElementById('time-input');
+const taskList = document.getElementById('task-list');
+const completedDisplay = document.getElementById('completed-count');
+const pendingDisplay = document.getElementById('pending-count');
+
+let pendingCount = 0;
+let completedCount = 0;
+
+addBtn.addEventListener('click', () => {
+    const task = exerciseInput.value;
+    const time = timeInput.value;
+
+    if (task === '' || time === '') {
+        alert("Por favor, preencha o exercício e o horário!");
+        return;
+    }
+
+    createTask(task, time);
+    exerciseInput.value = '';
+    timeInput.value = '';
+});
+
+function createTask(task, time) {
+    const li = document.createElement('li');
+    
+    li.innerHTML = `
+        <div class="task-info">
+            <strong>${task}</strong>
+            <span class="time">⏰ ${time}</span>
+        </div>
+        <button class="delete-btn">Concluir</button>
+    `;
+
+    li.querySelector('.delete-btn').addEventListener('click', () => {
+        li.style.opacity = '0';
+        setTimeout(() => {
+            li.remove();
+            completedCount++;
+            pendingCount--;
+            updateStats();
+        }, 300);
+    });
+
+    taskList.appendChild(li);
+    pendingCount++;
+    updateStats();
+}
+
+function updateStats() {
+    pendingDisplay.innerText = pendingCount;
+    completedDisplay.innerText = completedCount;
+}
+    </script>
+</body>
+</html>

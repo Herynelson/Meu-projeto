@@ -1,0 +1,78 @@
+import org.cloudbus.cloudsim.Cloudlet;
+import org.cloudbus.cloudsim.Datacenter;
+import org.cloudbus.cloudsim.DatacenterBroker;
+import org.cloudbus.cloudsim.Host;
+import org.cloudbus.cloudsim.Vm;
+import org.cloudbus.cloudsim.core.CloudSim;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+public class CloudSimExample {
+    public static void main(String[] args) {
+        try {
+            // Inicializando o CloudSim
+            int numUsers = 1; // número de usuários
+            Calendar calendar = Calendar.getInstance();
+            boolean traceFlag = false;
+
+            // Iniciando o CloudSim
+            CloudSim.init(numUsers, calendar, traceFlag);
+
+            // Criando um datacenter (data center)
+            Datacenter datacenter = createDatacenter("Datacenter_0");
+
+            // Criando o broker
+            DatacenterBroker broker = new DatacenterBroker("Broker");
+
+            // Criando uma lista de VMs
+            List<Vm> vmlist = new ArrayList<>();
+            int vmId = 0;
+            int mips = 1000;
+            int ram = 512;
+            long bw = 1000;
+            long size = 10000;
+            int pesNumber = 1; // número de núcleos de CPU
+            String vmm = "Xen"; // tipo do hypervisor
+
+            // VM( id, userId, mips, pesNumber, ram, bw, size, vmm, CloudletSchedulerTimeShared)
+            Vm vm = new Vm(vmId, broker.getId(), mips, pesNumber, ram, bw, size, vmm, new org.cloudbus.cloudsim.CloudletSchedulerTimeShared());
+            vmlist.add(vm);
+
+            // Adicionando a VM ao broker
+            broker.submitVmList(vmlist);
+
+            // Criando uma lista de Cloudlets
+            List<Cloudlet> cloudletList = new ArrayList<>();
+            int idShift = 0;
+            long length = 400000;
+            long fileSize = 300;
+            long outputSize = 300;
+            Cloudlet cloudlet = new Cloudlet(idShift, length, pesNumber, fileSize, outputSize, new org.cloudbus.cloudsim.UtilizationModelFull(), new org.cloudbus.cloudsim.UtilizationModelFull(), new org.cloudbus.cloudsim.UtilizationModelFull());
+            cloudlet.setUserId(broker.getId());
+
+            cloudletList.add(cloudlet);
+
+            // Adicionando a Cloudlet ao broker
+            broker.submitCloudletList(cloudletList);
+
+            // Iniciando a simulação
+            CloudSim.startSimulation();
+
+            // Recuperando os resultados da Cloudlet
+            CloudSim.stopSimulation();
+
+            System.out.println("Simulação finalizada com sucesso!");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static Datacenter createDatacenter(String name) {
+        // Aqui você criaria um datacenter
+        // Este método deve retornar um objeto Datacenter
+        return null;
+    }
+}

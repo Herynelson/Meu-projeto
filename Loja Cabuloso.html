@@ -1,343 +1,361 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>loja Cabuloso</title>
-	<link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBBsPRz-wv7ZU8VcT-foWxkDDMIZ5GM-KRnw&s">
-	<style type="text/css">
-
-		* {
-			margin: 0;
-			padding: 0;
-			font-family: Verdana;
-		}
-
-		ul {
-			list-style: none;
-		}
-
-		a {
-			text-decoration: none;
-		}
-
-		header nav {
-			background-color: #0b1946;
-		}
-
-		#navbar {
-			display: flex;
-			justify-content: space-around;
-			align-items: center;
-			font-size: .7rem;
-			padding: 0 1rem;
-			max-width: 1000px;
-			margin: 0 auto;
-		}
-
-		#navbar a {
-			color: rgb(166, 202, 233);
-			transition: 0.4s;
-		}
-
-		#navbar a:hover {
-			color: #d7ebf5;
-		}
-
-		#bottom-header {
-            font-size: .8rem;
-			padding: 1rem;
-			border-bottom: 1px solid #ccc;
-		}
-
-		#bottom-header h3 {
-			font-size: 1.2rem;
-			color: #001142;
-		}
-
-		#bottom-header a {
-            color: #001142;
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja Oficial | Cruzeiro Esporte Clube</title>
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBBsPRz-wv7ZU8VcT-foWxkDDMIZ5GM-KRnw&s">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cruzeiro-blue: #0033a0;
+            --cruzeiro-dark: #071950;
+            --accent-blue: #0071e3;
+            --light-gray: #f5f5f7;
+            --white: #ffffff;
         }
 
-		#bottom-heade-inner {
-            max-width: 1000px;
-			margin: 0 auto;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
-		#bottom-header-inner a {
-            margin: 0 0.5rem;
+        body {
+            background-color: var(--white);
+            color: var(--cruzeiro-dark);
+            overflow-x: hidden;
         }
 
-		#bottom-header-inner .btn,
-		.btn {
-			background-color: #0071e3;
-			border-radius: 10rem;
-			padding: .4rem 1rem;
-			color: #fff;
-		}
-
-		
-
-		#ribbon {
-            background-color: #bfd8f1;
-            color: #f5f5f7;
-            padding: 1rem;
-            text-align: center;
-			font-size: 0.8rem;
-			color: #001142;
-        }
-		
-		#ribbon a {
-			color: #0071e3;
-		}
-
-		#main-content {
-			text-align: center;
-			color: #001142;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-		}
-
-		#main-content #title{
-			margin: 1rem;
-			font-size: 2rem;
-		}
-
-		#main-content #subtitle {
-            margin: 1rem;
-			font-size: 4rem;
-			font-weight: bold;
-		}
-
-		#main-content #description {
-            max-width: 600px;
-			margin: 1rem auto;
-            font-size: 1.1 rem;
-			line-height: 1.5 rem;
+        /* --- Header & Nav --- */
+        header nav {
+            background-color: var(--cruzeiro-dark);
+            padding: 0.5rem 0;
         }
 
-		#main-content #price {
-			font-size: 1.3rem;
-			color: #001142;
-			margin: 2rem;
-		}
-
-		#main-content #price a:hover {
-			background-color: #e1e4eb;
-		}
-
-		#main-content .btn {
-			font-size: 1.1rem;
-			padding: 0.8rem 1.4rem;
-			align-self: center;
-		}
-
-		#main-content #product-image {
-			width: 500px;
-			height: 500px;
-			margin: 3rem auto;
-			opacity: 1;
-			transition: 0.5s;
-		}
-
-		#main-content #product-image.changing{
-            opacity: 0.5;
+        #navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            list-style: none;
         }
 
-		#image-picker {
-		     margin-bottom: 500px;
-        }
-
-		#image-picker ul {
-			display: flex;
-			justify-content: center;
-		}
-
-		#image-picker li {
-			margin: 1rem;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			cursor: pointer;
-		}
-
-		#image-picker li .color {
-			width: 2rem;
-			height: 2rem;
-			border-radius: 50%;
-			box-shadow: 1px 1px 1px;
-			border: 4px solid white;
-			pointer-events: none;
-		}
-
-		#image-picker li .description {
-			font-size: .7rem;
-			color: #001142;
-			margin-top: 0.6rem;
-		}
-
-		#blue .color {
-			background-color: blue;
-		}
-
-		#white .color {
-			background-color: #edeff5;
-		}
-
-		#terceira .color {
-			background-color: #020c29;
-		}
-
-		#treino .color {
-			background-color: #dd3c3c;
-		}
-
-		.selected {
-			outline: 2px solid #43a1f1;
-		}
-
-		footer {
-			background-color: #0b1946;
+        #navbar a {
             color: #fff;
-            padding: 1rem;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 300;
+            transition: 0.3s;
+        }
+
+        #navbar a:hover {
+            color: var(--accent-blue);
+        }
+
+        #bottom-header {
+            background: var(--white);
+            border-bottom: 1px solid #eee;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        #bottom-header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        #bottom-header h3 {
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .btn {
+            background-color: var(--accent-blue);
+            border-radius: 50px;
+            padding: 0.6rem 1.5rem;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s, background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--cruzeiro-blue);
+            transform: scale(1.05);
+        }
+
+        /* --- Ribbon --- */
+        #ribbon {
+            background: linear-gradient(90deg, #bfd8f1, #e1efff);
+            padding: 0.8rem;
             text-align: center;
-            font-size:.7rem;
-		}
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
 
-		@media screen and (max-width: 600px) {
-            #main-content {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
+        /* --- Main Content --- */
+        #main-content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 2rem;
+            align-items: center;
+        }
 
+        #product-display {
+            text-align: center;
+            position: relative;
+        }
 
-		
-	</style>
+        #product-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 20px;
+            transition: 0.4s ease-in-out;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+        }
 
-     
+        .changing {
+            opacity: 0;
+            transform: translateY(20px);
+        }
 
+        #product-info {
+            text-align: left;
+        }
+
+        #title {
+            color: var(--accent-blue);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        #subtitle {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        #description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        #price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        /* --- Image Picker --- */
+        #image-picker ul {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        #image-picker li {
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .color-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            margin-bottom: 0.5rem;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: block;
+        }
+
+        #blue .color-circle { background-color: #0033a0; }
+        #white .color-circle { background-color: #f0f0f0; }
+        #terceira .color-circle { background-color: #020c29; }
+        #treino .color-circle { background-color: #13d1df; }
+
+        li:hover .color-circle { transform: scale(1.1); }
+        li.active .color-circle { border-color: var(--accent-blue); }
+
+        .description { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--cruzeiro-dark);
+            color: #fff;
+            padding: 3rem 1rem;
+            margin-top: 5rem;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            #main-content { grid-template-columns: 1fr; text-align: center; }
+            #product-info { text-align: center; order: 1; }
+            #product-display { order: 2; }
+            #subtitle { font-size: 2.5rem; }
+            #image-picker ul { justify-content: center; }
+        }
+    </style>
 </head>
-
 <body>
-  <header>
-	<nav>
-		<ul id="navbar">
+
+<header>
+    <nav>
+        <ul id="navbar">
             <li id="logo">
-				<a href="#">
-					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWgP9lNib-LjZRgy-RQgGyAgN1hsXdW5Nt8Q&s" alt="Cruzeiro" width="50" height="50">
-				</a>
-			</li>
+                <a href="#"><img src="data:image/jpeg;base64,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" alt="Cruzeiro" width="40"></a>
+            </li>
             <li><a href="#">Loja</a></li>
             <li><a href="#">Produtos</a></li>
-			<li><a href="#">Ifantil</a></li>
-			<li><a href="#">Parceiros Oficiais</a></li>
-			<li><a href="#">Suporte</a></li>
+            <li><a href="#">Infantil</a></li>
+            <li><a href="#">Sócio</a></li>
+            <li><a href="#">Suporte</a></li>
         </ul>
-	</nav>
-	<div id="bottom-header">
-		<div id="bottom-header-inner">
-			<h3>Sócio 5 Estrelas</h3>
-			<div id="bottom-header-links">
-				<a href="#">Visão geral</a>
-				<a href="#">Planos</a>
-				<a href="#">ingressos</a>
-				<a href="#" class="btn">Vire Sócio</a>
-			</div>
-		</div>
-	</div>
-  </header>
-  <div id="ribbon">
-	<p>
-		Compre sua nova camisa do cabuloso agora e divida em até 6x sem juros, sócio torcedor 5 estrelas recebe 15% de desconto em qualquer produto da loja.
-		<a href="">Clique e saiba condições</a>
-	</p>
-  </div>
-  <main id="main-content">
-  <h1 id="title">Camisa do Cruzeiro</h1>
-  <p id="subtitle">É cabuloso</p>
-  <p id="description">
-	Batizada de "Fenomenal" A camisa I do Cruzeiro 2024, é ideal para as apaixonadas pela história do Cabuloso, já que celebra o período vencedor entre os anos 1992 e 1995. O manto exibe design em azul e traz grafismos representando a constelação de conquistas.
-  </p>
-  <p id="price">A partir de R$ 150,00</p>
-  <a href="#" class="btn">Comprar</a>
-  <img src="https://images.tcdn.com.br/img/img_prod/311840/camisa_adidas_cruzeiro_i_2024_feminina_123503_1_157fccbd6c9cecde140920c9a5738dfc.jpg" alt="camisa" id="product-image">
-   <div id="image-picker">
-	<ul>
-		<li id="blue">
-			<span class="color selected"></span>
-		    <span class="description">Azul celeste</span>
-		</li>
-		<li id="white">
-			<span class="color selected"></span>
-			<span class="description">branco</span>
-		</li>
-		<li id="terceira">
-			<span class="color selected"></span>
-			<span class="description">terceira</span>
-		</li>
-		<li id="treino">
-			<span class="color selected"></span>
-			<span class="description">treino</span>
-		</li>
-	</ul>
-   </div>	   
+    </nav>
+    <div id="bottom-header">
+        <div id="bottom-header-inner">
+            <h3>Sócio 5 Estrelas</h3>
+            <div id="bottom-header-links">
+                <a href="#" style="margin-right: 1.5rem; text-decoration: none; color: #071950; font-size: 0.9rem;">Planos</a>
+                <a href="#" class="btn">Vire Sócio</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div id="ribbon">
+    <p>🚚 Frete grátis para sócios em compras acima de R$ 200 | <b>15% OFF</b> no PIX</p>
+</div>
+
+<main id="main-content">
+    <section id="product-display">
+        <img src="https://images.tcdn.com.br/img/img_prod/311840/camisa_adidas_cruzeiro_i_2024_feminina_123503_1_157fccbd6c9cecde140920c9a5738dfc.jpg" alt="Camisa Cruzeiro" id="product-image">
+        
+        <div id="image-picker">
+            <ul>
+                <li id="blue" class="active" onclick="changeProduct('blue')">
+                    <span class="color-circle"></span>
+                    <span class="description">Home</span>
+                </li>
+                <li id="white" onclick="changeProduct('white')">
+                    <span class="color-circle"></span>
+                    <span class="description">Away</span>
+                </li>
+                <li id="terceira" onclick="changeProduct('terceira')">
+                    <span class="color-circle"></span>
+                    <span class="description">Third</span>
+                </li>
+                <li id="treino" onclick="changeProduct('treino')">
+                    <span class="color-circle"></span>
+                    <span class="description">Treino</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="product-info">
+        <h1 id="title">Lançamento 2026</h1>
+        <p id="subtitle">Manto Sagrado</p>
+        <p id="description">
+            Inspirada na era vitoriosa de 92-95, a nova camisa do Cruzeiro traz a constelação do Sul em destaque e tecnologia <i>AEROREADY</i> para absorção de suor. Sinta o peso da história.
+        </p>
+        <span id="price">R$ 349,90</span>
+        <button class="btn" style="padding: 1.2rem 3rem; font-size: 1.1rem; width: 100%;">ADICIONAR AO CARRINHO</button>
+        <p style="margin-top: 1rem; font-size: 0.8rem; color: #888;">*Disponível em todos os tamanhos (P ao EGG)</p>
+    </section>
 </main>
+
+<hr>
+
+
+<main id="main-content">
+    <section id="product-display">
+        <img src="https://assets.adidas.com/images/c_fill,g_auto,w_1200,h_630,f_auto,q_auto/w_600,f_auto,q_auto/a5ebc9227e0641209a5f7b380b1be4fe_9366/Camisa_Cruzeiro_Especial_Goleiro_Cinza_KQ5227_HM51.jpg" alt="cc" id="product-image">        
+    </section>
+
+    <section id="product-info">
+        <h1 id="title">Camisa </h1>
+        <p id="subtitle">1</p>
+        <p id="description">
+            Todo grande time começa com um GIGANTE goleiro.
+        </p>
+        <span id="price">R$ 329,90</span>
+        <button class="btn" style="padding: 1.2rem 3rem; font-size: 1.1rem; width: 100%;">ADICIONAR AO CARRINHO</button>
+        <p style="margin-top: 1rem; font-size: 0.8rem; color: #888;">*Disponível em todos os tamanhos (P ao EGG)</p>
+    </section>
+</main>
+
+<hr>
+
+<main id="main-content">
+    <section id="product-display">
+        <img src="https://static.cruzeiro.com.br/produtos/camisa-cruzeiro-i-2526-kaio-jorge-n-19-torcedor-adidas-masculina/08/FBA-6284-008/FBA-6284-008_zoom1.jpg?ts=1755795834&ims=544x" alt="cc" id="product-image">        
+    </section>
+
+    <section id="product-info">
+        <h1 id="title">Faça o </h1>
+        <p id="subtitle">K</p>
+        <p id="description">
+            Compre agora o manto do nosso artilheiro. <a href="#">Já disponível</a>.
+        </p>
+        <span id="price">R$ 299,90</span>
+        <button class="btn" style="padding: 1.2rem 3rem; font-size: 1.1rem; width: 100%;">ADICIONAR AO CARRINHO</button>
+        <p style="margin-top: 1rem; font-size: 0.8rem; color: #888;">*Disponível em todos os tamanhos (P ao EGG)</p>
+    </section>
+</main>
+
+
 <footer>
-	<p> &copy; Todos os direitos reservados - Cruzeiro Esporte Clube 2024</p>
+    <p>&copy; 2024 Cruzeiro Esporte Clube - O Maior de Minas</p>
 </footer>
+
+<script>
+    const images = {
+        "blue": "https://images.tcdn.com.br/img/img_prod/311840/camisa_adidas_cruzeiro_i_2024_feminina_123503_1_157fccbd6c9cecde140920c9a5738dfc.jpg",
+        "white": "https://images.tcdn.com.br/img/img_prod/311840/camisa_adidas_cruzeiro_ii_2020_feminina_66117_1_20200130085016.jpg",
+        "terceira": "https://www.arte-vetor-camisa.com/imagens/arte-vetor-camisa-do-cruzeiro-treino-2026-69216.webp",
+        "treino": "https://acdn-us.mitiendanube.com/stores/001/775/982/products/camisa_adidas_cruzeiro_treino_2025_jogador_feminin_141118_1_93fdd1f2c8be24ac54706bdb992ee8d1-3-e2150a297664daa41a17408406593846-1024-1024.webp"
+    };
+
+    function changeProduct(id) {
+        const imgElement = document.getElementById('product-image');
+        const listItems = document.querySelectorAll('#image-picker li');
+
+        // Feedback visual de troca
+        imgElement.classList.add('changing');
+
+        setTimeout(() => {
+            imgElement.src = images[id];
+            imgElement.classList.remove('changing');
+            
+            // Atualiza classe ativa
+            listItems.forEach(li => li.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }, 300);
+    }
+</script>
+
 </body>
-
-<script defer>
-	const buttons = document.querySelectorAll('#image-picker li');
-		const image = document.querySelector("#product-image");
-
-		// Definir as URLs para cada botão baseado no ID
-		const images = {
-			"blue": "https://images.tcdn.com.br/img/img_prod/311840/camisa_adidas_cruzeiro_i_2024_feminina_123503_1_157fccbd6c9cecde140920c9a5738dfc.jpg",
-			"white": "https://images.tcdn.com.br/img/img_prod/311840/180_camisa_cruzeiro_bliss_branca_130886_1_61ac53e3803f5cc8087767982a199291.jpg",
-			"terceira": "https://images.tcdn.com.br/img/img_prod/311840/180_camisa_adidas_cruzeiro_iii_2024_feminina_138060_1_35effa0943e3cf6abddca2310185da0f.jpg",
-			"treino": "https://images.tcdn.com.br/img/img_prod/311840/180_camisa_adidas_cruzeiro_treino_comissao_2024_123531_1_28fcb3bbb13694fb34f75739dce3c494.jpg"
-		};
-
-		buttons.forEach((btn) => {
-			btn.addEventListener('click', (e) => {
-				// Limpar a classe "selected" de todos os botões
-				buttons.forEach((btn) => {
-					const colorElement = btn.querySelector(".color");
-					if (colorElement) {
-						colorElement.classList.remove("selected");
-					}
-				});
-
-				// Selecionar o botão clicado
-				const button = e.currentTarget;
-				const id = button.getAttribute("id");
-
-				const selectedColor = button.querySelector(".color");
-				if (selectedColor) {
-					selectedColor.classList.add("selected");
-				}
-
-				// Trocar a imagem com base no ID do botão
-				image.classList.add("changing");
-
-				// Verifica se o ID tem uma URL de imagem correspondente
-				if (images[id]) {
-					image.setAttribute("src", images[id]);
-				}
-
-				// Remover a classe "changing" após 200ms
-				setTimeout(() => {
-					image.classList.remove("changing");
-				}, 200);
-			});
-		});
-	</script>
-
 </html>

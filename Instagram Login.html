@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram</title>
+    <link rel="shortcut icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhAbKjpgh6XWnAyJFk__iTpDmrfrAB4D1mdw&usqp=CAU" type="image/x-icon">
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Helvetica;
+        }
+
+        body {
+            background-color: #fafafa;
+        }
+
+        #main-container {
+            display: flex;
+            margin-top: 30px;
+        }
+
+        #banner-container, 
+        #form-container {
+            flex: 1 1 0;
+        }
+
+        #banner-container {
+            text-align: right;
+        }
+
+        #banner-container img {
+            width: 100%;
+            margin-right: 15px;
+            margin-top: 25px;
+            max-width: 380px;
+        }
+
+        #form-container {
+            text-align: center;
+        }
+
+        #form-box {
+            background-color: #fff;
+            border: 1px solid #dbdbdb;
+            width: 350px;
+            margin-top: 30px;
+        }
+
+        #logo-insta {
+            width: 175px;
+            height: 51px;
+            margin: 30px auto 12px;
+        }
+
+        #login-form {
+            margin-top: 20px;
+        }
+
+        #login-form input {
+             display: block;
+             font-size: 12px;
+             padding: 12px 9px;
+             background-color: #fafafa;
+             border: 1px solid #dbdbdb;
+             border-radius: 3px;
+             width: 268px;
+             margin: 5px auto;
+        }
+
+        #login-form input[type="submit"] {
+            background-color: #b2dffc;
+            color: #fff;
+            margin-top: 15px;
+            border-radius: 5px;
+            height: 30px;
+            font-size: 13px;
+            padding: 0;
+            font-weight: bold;
+        }
+
+        .separator {
+            position: relative;
+        }
+
+        .line {
+            border-top: 1px solid;
+            width: 268px;
+            margin: 25px auto 35px;
+        }
+
+        .separator span {
+             position: absolute;
+             text-transform: uppercase;
+             color: #bbb;
+             background-color: #fff;
+             top: -6px;
+             width: 50px;
+             margin-left: -25px;
+             font-size: 14px;
+        }
+
+        #facebook-login {
+            margin-bottom: 25px;
+        }
+
+        #facebook-login a {
+            text-decoration: none;
+            color: #385185;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #facebook-login img {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+        }
+
+        #facebook-login span {
+            font-weight: bold;
+            font-size: 13px;
+            margin-top: 1px;
+        }
+
+        #forgot-pass {
+            margin-bottom: 20px;
+            font-size: 12px;
+        }
+
+        #forgot-pass a {
+            text-decoration: none;
+            color: #373799;
+        }
+
+        #register-container {
+            background-color: #fff;
+            border: 1px solid #dbdbdb;
+            width: 350px;
+            margin-top: 10px;
+            padding: 25px;
+        }
+
+        #register-container p {
+            font-size: 14px;
+            color: #262626;
+        }
+
+        #register-container a {
+            color: #4a95f6;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        #get-app-container {
+            text-align: center;
+            width: 350px;
+        }
+
+        #get-app-container p {
+            margin: 20px 0;
+            font-size: 13px;
+        }
+
+        #get-app-container img {
+            width: 136px;
+            height: 40px;
+        }
+
+        #get-app-container a {
+            text-decoration: none;
+        }
+
+        footer {
+            text-align: left;
+            width: 1000px;
+            margin: 50px auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        footer #footer-links {
+            display: flex;
+            list-style: none;
+        }
+
+        #footer-links li {
+            margin-right: 10px;
+        }
+
+        #footer-links a, 
+        #copyright {
+            text-decoration: none;
+            color: #8e8e8e;
+            font-size: 12px
+        }
+
+        #copyright {
+            margin-top: 10px;
+        }
+
+        @media(max-widht: 450px) {
+            body {
+                background-color: #fff;
+            }
+
+            #banner-container {
+                display: none;
+            }
+
+            #main-container, #form-box {
+                margin-top: 0;
+            }
+
+            #main-container, #form-box,
+            #register-container, #get-app-container {
+                width: 100%;
+                border: none;
+            }
+
+            footer {
+                width: 90%;
+            }
+
+            #footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            #footer-links {
+                margin-bottom: 10px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <main>
+        <div id="main-container">
+            <div id="banner-container">
+                <img src="https://media.gcflearnfree.org/content/633d944b3823fb02e84dce55_10_05_2022/Screen%20Shot%202022-10-10%20at%202.28.19%20PM.png" alt="Crie uma conta no instagram">
+            </div>
+            <div id="form-container">
+                <div id="form-box">
+                    <img id="logo-insta" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRes48htCW4WfJA0VIXwhu3MOTf95XhKpum-qX4xxU0aVqpZD70rWWzQldnxqx7jOlGswI&usqp=CAU" alt="Instagram">
+                    <form id="login-form">
+                        <input type="text" name="username" placeholder="Número de celular, usuário ou e-mail">
+                        <input type="text" name="password" placeholder="senha">
+                        <input type="submit" value="Entrar">
+                    </form>
+                    <div class="separator">
+                        <div class="line"></div>
+                            <span>Ou</span>
+                        </div>
+                        <div id="other-links">
+                            <div id="facebook-login">
+                                <a href="#">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlIysFVGl5bEj631MSkmFNh5exQMNL3sWPyg&usqp=CAU" alt="Facebook login">
+                                    <span>Entrar com o Facebook</span>
+                                </a>
+                            </div>
+                            <div id="forgot-pass">
+                                <a href="#">Esqueceu a Senha?</a>
+                            </div>
+                        </div>        
+                </div>
+                <div id="register-container">
+                    <p>Não tem uma conta? <a href="#">Cadastre-se</a></p>
+                </div>
+                <div id="get-app-container">
+                    <p>Obtenha o App.</p>
+                    <a href="#">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkShmTjxrdhprkqcA0osqAcJrXT9EEWZxtWw&usqp=CAU" alt="Apple store">
+                    </a>
+                    <a href="#">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMAUa6g-SJ5FS6oqlFGmIkKEVN0VgJRhXOIQ&usqp=CAU" alt="Play store">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <nav>
+            <ul id="footer-links">
+                <li><a href="#">Meta</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Ajuda</a></li>
+                <li><a href="#">API</a></li>
+                <li><a href="#">Privacidade</a></li>
+                <li><a href="#">Termos</a></li>
+                <li><a href="#">Principais Contas</a></li>
+                <li><a href="#">Hashtags</a></li>
+                <li><a href="#">Instagram Lite</a></li>
+            </ul>
+        </nav>
+        <p id="copyright">&copy; 2024 Instagram from Meta</p>
+    </footer>  
+</body>
+</html>

@@ -5,145 +5,213 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - MG</title>
     <style>
+/* Importando fontes mais modernas e elegantes */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
 
-        * {
-            padding: 0;
-            margin: 0;
-            font-family: Georgia, 'Times New Roman', Times, serif;
-        }
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box; /* Garante que padding não quebre o layout */
+}
 
-        ul {
-            list-style: none;
-        }
+body {
+    background-color: #fcfaf7; /* Um off-white mais aconchegante */
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
 
-        a {
-            text-decoration: none;
-            color: #444;
-            transition: 0.5s;
-        }
+ul {
+    list-style: none;
+}
 
-        a:hover {
-            color: #37a1f7;
-        }
+a {
+    text-decoration: none;
+    color: #b32d2d; /* Vermelho inspirado na bandeira de MG */
+    transition: 0.3s ease;
+}
 
-        #navbar {
-            padding: 1.5rem 2.5rem;
-            border-bottom: 4px solid #ddd;
-        }
+a:hover {
+    color: #e63946;
+}
 
-        #navbar-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+/* Navbar com Gradiente Suave */
+#navbar {
+    background: linear-gradient(135deg, #b32d2d 0%, #7a1f1f 100%);
+    padding: 1.5rem 2.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
-        #nav-links {
-            display: flex;
-            gap: 1rem;
-        }
+#navbar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            gap: 3rem;
-            padding: 2rem 2.5rem;
-        }
+#nav-links {
+    display: flex;
+    gap: 2rem;
+}
 
-        #posts-container {
-            flex: 3 1 0;
-        }
+#nav-links a {
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
 
-        .post {
-            margin-bottom: 2.5rem;
-        }
+#nav-links a:hover {
+    opacity: 0.8;
+}
 
-        .post img {
-            width: 100%;
-            margin-bottom: 1rem;
-        }
+/* Container Principal */
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    display: flex;
+    gap: 3rem;
+    padding: 0 2.5rem;
+}
 
-        .tittle,
-        .description {
-            margin-bottom: 1rem;
-        }
+#posts-container {
+    flex: 3;
+}
 
-        .tittle {
-            font-size: 2rem;
-        }
+/* Posts Estilizados como Cards */
+.post {
+    background: #fff;
+    margin-bottom: 3rem;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
 
-        #siderbar {
-            flex: 1 1 0;
-        }
+.post:hover {
+    transform: translateY(-5px);
+}
 
-        #search-bar,
-        #categories,
-        #tags {
-            padding: 1.5rem;
-            border: 1px solid #DDD;
-            margin-bottom: 1rem;
-            border-radius: 5px;
-        }
+.post img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover; /* Mantém a proporção sem distorcer */
+}
 
-        #search-bar h4,
-        #categories h4,
-        #tags h4 {
-            margin-bottom: 1.5rem;
-            font-size: 1.6rem;
-        }
+.post-content { /* Sugiro envolver o texto em uma div no HTML */
+    padding: 2rem;
+}
 
-        #search-bar form {
-            display: flex;
-        }
+.tittle {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
 
-        #search-bar input {
-            padding: 0.5rem 1rem;
-            border: 1px solid #ddd;
-        }
+.tittle a {
+    color: #222;
+}
 
-        #search-bar input[type="submit"] {
-            cursor: pointer;
-            background-color: #37a1f7;
-            color: #fff;
-            border: none;
-        }
+.description {
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+}
 
-        #categories li {
-            margin-bottom: 1rem;
-        }
+/* Sidebar */
+#siderbar {
+    flex: 1;
+}
 
-        #tags-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
+.sidebar-box {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+}
 
-        #tags-container a {
-            background-color: #ddd;
-            padding: 0.5rem 0.7rem;
-            border-radius: 0.3rem;
-        }
+h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    border-left: 4px solid #b32d2d;
+    padding-left: 10px;
+    margin-bottom: 1.2rem;
+}
 
-        #footer {
-            border-top: 2px solid #ddd;
-            padding: 3rem;
-            text-align: center;
-        }
+/* Campo de Busca */
+#search-bar form {
+    display: flex;
+}
 
-        #footer h2,
-        #footer p {
-            margin-bottom: 1rem;
-        }
+#search-bar input[type="text"] {
+    flex: 1;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
 
-        @media(max-widht: 450px) {
-            .container {
-                flex-wrap: wrap;
-            }
-        }
-         
+#search-bar input[type="submit"] {
+    background-color: #b32d2d;
+    color: white;
+    padding: 0 1rem;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-weight: bold;
+}
 
+/* Tags */
+#tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+#tags-container a {
+    background-color: #f0f0f0;
+    color: #555;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
+
+#tags-container a:hover {
+    background-color: #b32d2d;
+    color: white;
+}
+
+/* Footer */
+#footer {
+    background-color: #222;
+    color: #fff;
+    padding: 4rem 2rem;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+#footer h2 {
+    color: #b32d2d;
+    margin-bottom: 1rem;
+}
+
+/* Responsividade Melhorada */
+@media (max-width: 992px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    #posts-container, #siderbar {
+        width: 100%;
+    }
+}
 
     </style>
 </head>

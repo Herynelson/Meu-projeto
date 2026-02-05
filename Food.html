@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOODs</title>
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo22QYBk5jhR7hm_VNoZGgHqSqm6Afr9Er_Q&s">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Font+Name">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+    --color-primary-1: #fff9ea;
+    --color-primary-2: #ffe8b4;
+    --color-primary-3: #f8d477;
+    --color-primary-4: #ffe100;
+    --color-primary-5: #ffcb45;
+    --color-primary-6: #e9a209;
+
+    --color-neutral-0: #fff;
+    --color-neutral-1: #1d1d1d;
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--color-primary-1);
+}
+
+section {
+    padding: 28px 8%;
+}
+
+.btn-default {
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-primary-5);
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-weight: 600;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color .3s ease;
+}
+
+.btn-default:hover {
+    background-color: var(--color-primary-3);
+}
+
+.social-media-buttons {
+    display: flex;
+    gap: 18px;
+}
+
+.social-media-buttons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 40px;
+    background-color: var(--color-neutral-0);
+    font-size: 1.25rem;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--color-neutral-1);;
+    box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow .3s ease;
+}
+
+.social-media-buttons a:hover {
+    box-shadow: 0px 0px 12px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    color: var(--color-primary-6);
+    font-size: 1.563rem;
+}
+
+
+.section-subtitle {
+    font-size: 2.1875rem;
+} 
+
+#menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+#dishes {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 32px;
+}
+
+.dish {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    gap: 18px;
+    width: 25%;
+    padding: 20px;
+    background-color: var(--color-neutral-0);
+    box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.dish-heart {
+    position: absolute;
+    background-color: var(--color-primary-6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.563rem;
+    color: var(--color-primary-1);
+    width: 70px;
+    height: 70px;
+    right: -10px;
+    top: -10px;
+    border-radius: 0px 37.5px 0px 42.5px;
+}
+
+.dish-description {
+    color: #434343;
+    text-align: center;
+}
+
+.dish-rate i {
+    color: var(--color-primary-6);
+}
+
+.dish-price {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+@media screen and (max-width: 1170px) {
+    #dishes {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .dish {
+        width: calc(50% - 12px);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .dish {
+        width: 100%;
+    }
+
+    #menu .section-subtitle {
+        text-align: center;
+    }
+} 
+
+#home {
+    display: flex;
+    min-height: calc(100vh - 91px);
+    position: relative;
+}
+
+#cta {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-top: 5%;
+}
+
+#cta .title {
+    font-size: 4rem;
+    color: var(--color-neutral-1);;
+}
+
+#cta .title span {
+    color: var(--color-primary-6);
+}
+
+#cta .description {
+    font-size: 1.2rem;
+    margin-left: 22px;
+}
+
+#cta_buttons {
+    display: flex;
+    gap: 24px;
+}
+
+#cta_buttons a {
+    text-decoration: none;
+    color: var(--color-neutral-1);;
+}
+
+#phone_button {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 8px 14px;
+    font-weight: 500;
+    box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+#phone_button button {
+    box-shadow: none;
+}
+
+#banner {
+    display: flex;
+    align-items: start;
+    justify-content: end;
+    width: 70%;
+    z-index: 2;
+}
+
+#banner img {
+    height: 500px;
+    width: 500px;
+    border-radius: 80px;
+}
+
+.shape {
+    background-color: var(--color-primary-2);
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    border-radius: 40% 30% 0% 20%;
+    top: 0;
+    right: 0;
+    z-index: 1;
+}
+
+@media screen and (max-width: 1170px) {
+    #home {
+        min-height: 100%;
+        padding-top: 0px;
+    }
+
+    #banner,
+    #banner img,
+    #home .shape {
+        display: none;
+    }
+
+    #cta {
+        width: 100%;
+        text-align: center;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    #phone_button button {
+        display: none;
+    }
+}
+
+header {
+    width: 100%;
+    padding: 28px 8%;
+    position: sticky;
+    top: 0;
+    background-color: var(--color-primary-1);
+    z-index: 3;
+}
+
+#navbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#nav_logo {
+    font-size: 24px;
+    color: var(--color-primary-6);
+}
+
+#nav_list {
+    display: flex;
+    list-style: none;
+    gap: 48px;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: #1d1d1dad;
+    font-weight: 600;
+}
+
+.nav-item.active a {
+    color: var(--color-neutral-1);
+    border-bottom: 3px solid var(--color-primary-4);
+}
+
+#mobile_btn {
+    display: none;
+}
+
+#mobile_menu {
+    display: none;
+}
+
+@media screen and (max-width: 1170px) {
+    #nav_list,
+    #navbar .btn-default {
+        display: none;
+    }
+
+    #mobile_btn {
+        display: block;
+        border: none;
+        background-color: transparent;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    #mobile_menu.active {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #mobile_nav_list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin: 12px 0px;
+    }
+
+    #mobile_nav_list .nav-item {
+        list-style: none;
+        text-align: center;
+    } 
+}
+
+footer {
+    background-color: var(--color-primary-2);
+}
+
+#footer_items {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 8% 24px 8%;
+    align-items: center;
+}
+
+#copyright {
+    color: var(--color-neutral-1);;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 600px) {
+    #footer_items {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+   <header>
+    <nav id="navbar">
+        <i class="fa-solid fa-burger" id="nav-logo">FOODs</i>
+        <ul id="nav-list">
+            <li class="nav-item">
+                <a href="#home">Início</a>
+            </li>
+            <li class="nav-item">
+                <a href="#menu">Cardápio</a>
+            </li>
+            <li class="nav-item"> 
+                <a href="#testmonials">Avaliações</a>
+            </li>
+        </ul>
+        <button class="btn-default">Peça aqui</button>
+        <button id="mobile_btn">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </nav>
+    <div id="mobile_menu">
+        <ul id="mobile_nav_list">
+            <li class="nav-item">
+                <a href="#home">Início</a>
+            </li>
+            <li class="nav-item">
+                <a href="#menu">Cardápio</a>
+            </li>
+            <li class="nav-item"> 
+                <a href="#testmonials">Avaliações</a>
+            </li>
+        </ul>
+        <button class="btn-default">Peça aqui</button>
+    </div>
+   </header>
+   <main id="content">
+        <section id="home">
+            <div class="shape"></div>
+            <div id="cta">
+                <h1 class="title">
+                    O sabor se direciona a
+                    <span>você</span>                  
+                </h1>
+                <p class="description">
+                    A refinidade de sabores e aromas são ares de harmonia a seu paladar no melhor ambiente culinário a seu dispor.
+                </p>
+                <div id="cta_buttons">
+                    <a href="#" class="btn-default">
+                        Ver cardápio
+                    </a>
+                    <a href="tel:+55 (31)995721725" id="phone-button">
+                    <button class="btn-default">
+                        <i class="fa-solid fa-phone"></i>
+                        +55 (31)995721725
+                    </button>
+                    </a>
+                </div>
+                <div class="social-media-buttons">
+                    <a href="#">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                </div>
+            </div>
+            <div id="banner">
+                <img src="https://f.i.uol.com.br/fotografia/2024/06/05/1717604584666090e8d6d1a_1717604584_3x2_md.jpg" alt="pratos">
+            </div>
+        </section>
+
+<br><br><br>
+
+
+        <section id="home">               
+            <div id="banner">
+                <img src="https://www.shutterstock.com/image-photo/young-smiling-happy-chef-cook-600nw-2493491261.jpg" alt="pratos">
+            </div>
+            <div id="cta">
+            <div>
+                <h1 class="title">
+                    Cozinheiros de grande
+                    <span>ESCALÃO</span>                  
+                </h1>
+                <p class="description">
+                    A Maestria Culinária no FOODs e a excelência começa na cozinha. Nossa equipe de cozinheiros é composta por verdadeiros mestres na arte da culinária. Com um profundo conhecimento de técnicas clássicas e contemporâneas, eles transformam ingredientes frescos e de alta qualidade em pratos que são uma celebração de sabor, textura e apresentação.
+                </p>
+                 
+            </div>
+        </section>
+
+
+
+
+
+        <section id="menu">
+            <h2 class="section-title">Cardápio</h2>
+            <h3 class="section-subtitle">Nossos pratos especiais</h3>
+
+            <div id="dishes">
+                <div class="dish">
+                    <div class="dish-heart">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+
+                    <img src="src/images/dish.png" class="dish-image" alt="">
+
+                    <h3 class="dish-title">
+                        Moqueca Capixaba Clássica
+                    </h3>
+
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvGrRr0LMjwXsxzfaAh3ZvLiONe013IeBrBA&s" alt="">
+
+                    <span class="dish-description">
+                        Leve e saborosa, esta moqueca utiliza a técnica tradicional do Espírito Santo, cozinhando postas de peixe fresco (robalo ou badejo) e camarões suculentos em um caldo aromático de urucum, azeite, coentro e cebolinha. Servida com arroz branco soltinho e pirão cremoso.
+                    </span>
+
+                    <div class="dish-rate">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <span>(500+)</span>
+                    </div>
+
+                    <div class="dish-price">
+                        <h4>R$33,00</h4>
+                        <button class="btn-default">
+                            <i class="fa-solid fa-basket-shopping"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="dish">
+                    <div class="dish-heart">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+
+                    <img src="src/images/dish2.png" class="dish-image" alt="">
+
+                    <h3 class="dish-title">
+                        Feijoada Completa Premium
+                    </h3>
+
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZXdyKmTrcnEESaK0OfnfaYxxciF-mXJtzzA&s" alt="">
+
+                    <span class="dish-description">
+                        O nosso ícone! Uma feijoada preparada lentamente com uma seleção nobre de carnes salgadas e defumadas (carne seca, costela, lombo e paio de alta qualidade). É acompanhada por couve refogada no alho, farofa crocante e laranja, proporcionando a combinação perfeita de sabores intensos.
+                    </span>
+
+                    <div class="dish-rate">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <span>(500+)</span>
+                    </div>
+
+                    <div class="dish-price">
+                        <h4>R$29,50</h4>
+                        <button class="btn-default">
+                            <i class="fa-solid fa-basket-shopping"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="dish">
+                    <div class="dish-heart">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+
+                    <img src="src/images/dish3.png" class="dish-image" alt="">
+
+                    <h3 class="dish-title">
+                        Escondidinho de Carne Seca Gratinado
+                    </h3>
+
+                    <img src="data:image/jpeg;base64,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" alt="">
+
+                    <span class="dish-description">
+                        Um prato reconfortante e irresistível. A carne seca, dessalgada e desfiada de forma artesanal, é coberta por um purê cremoso de mandioca (aipim/macaxeira), finalizado com um toque de requeijão e gratinado com queijo coalho até atingir uma crosta dourada perfeita.
+                    </span>
+
+                    <div class="dish-rate">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <span>(500+)</span>
+                    </div>
+
+                    <div class="dish-price">
+                        <h4>R$40,00</h4>
+                        <button class="btn-default">
+                            <i class="fa-solid fa-basket-shopping"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="dish">
+                    <div class="dish-heart">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+
+                    <img src="src/images/dish4.png" class="dish-image" alt="">
+
+                    <h3 class="dish-title">
+                        Picanha Maturada Assada
+                    </h3>
+
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaNYlGKR3HjOEvRx10uUNkqQBXvibydrAtig&s" alt="">
+
+                    <span class="dish-description">
+                        O churrasco elevado. Uma peça selecionada de picanha, grelhada com maestria e temperada apenas com sal grosso, resultando em uma carne incrivelmente macia e suculenta. Servida com um vinagrete de caju fresco e levemente picante e batatas rústicas.
+                    </span>
+
+                    <div class="dish-rate">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <span>(500+)</span>
+                    </div>
+
+                    <div class="dish-price">
+                        <h4>R$60,00</h4>
+                        <button class="btn-default">
+                            <i class="fa-solid fa-basket-shopping"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials">
+            <img src="src/images/chef.png" id="testimonial_chef" alt="">
+
+            <div id="testimonials_content">
+                <h2 class="section-title">
+                    Depoimentos
+                </h2>
+                <h3 class="section-subtitle">
+                    O que os clientes falam sobre nós
+                </h3>
+
+                <div id="feedbacks">
+                    <div class="feedback">
+                        <img src="src/images/avatar.png" class="feedback-avatar" alt="">
+
+                        <div class="feedback-content">
+                            <p>
+                                Sara Fernanda
+                                <span>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </span>
+                            </p>
+                            <p>
+                                "Ótimos pratos e uma incrível experiência. Super recomendo!"
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="feedback">
+                        <img src="src/images/avatar.png" class="feedback-avatar" alt="">
+
+                        <div class="feedback-content">
+                            <p>
+                                Giorno Giovanna
+                                <span>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </span>
+                            </p>
+                            <p>
+                                "Hospitalidade e ambientação incrivelmente fantástica! Voltarei mais vezes!"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-default">
+                    Ver mais avaliações
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <img src="src/images/wave.svg" alt="">
+
+        <div id="footer_items">
+            <span id="copyright">
+                &copy 2025 FOODs
+            </span>
+
+            <div class="social-media-buttons">
+                <a href="">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+
+                <a href="">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+   </main>
+   <script>
+     $(document).ready(function() {
+        $('#mobile_btn').on('click', function() {
+            $('#mobile_menu').toggleClass('active');
+            $('#mobile_btn').find('i').toggleClass('fa-x');
+        })
+     });
+     const sections = $('section');
+    const navItems = $('.nav-item');
+
+    $(window).on('scroll', function () {
+        const header = $('header');
+        const scrollPosition = $(window).scrollTop() - header.outerHeight();
+
+        let activeSectionIndex = 0;
+
+        if (scrollPosition <= 0) {
+            header.css('box-shadow', 'none');
+        } else {
+            header.css('box-shadow', '5px 1px 5px rgba(0, 0, 0, 0.1');
+        }
+
+        sections.each(function(i) {
+            const section = $(this);
+            const sectionTop = section.offset().top - 96;
+            const sectionBottom = sectionTop+ section.outerHeight();
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                activeSectionIndex = i;
+                return false;
+            }
+        })
+
+        navItems.removeClass('active');
+        $(navItems[activeSectionIndex]).addClass('active');
+    });
+
+    ScrollReveal().reveal('#cta', {
+        origin: 'left',
+        duration: 2000,
+        distance: '20%'
+    });
+
+    ScrollReveal().reveal('.dish', {
+        origin: 'left',
+        duration: 2000,
+        distance: '20%'
+    });
+
+    ScrollReveal().reveal('#testimonial_chef', {
+        origin: 'left',
+        duration: 1000,
+        distance: '20%'
+    });
+
+    ScrollReveal().reveal('.feedback', {
+        origin: 'right',
+        duration: 1000,
+        distance: '20%'
+    });
+});
+
+   </script>
+</body>
+
+
+</html>

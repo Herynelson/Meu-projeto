@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora do Dia</title>
+    <style>
+        body {
+            background: rgb(70, 151, 218);
+            font: normal 15pt Arial;
+        }
+
+        header {
+            color: white;
+            text-align: center;
+        }
+
+        section {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            width: 500px;
+            margin: auto;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.404);
+        }
+
+        footer {
+            color: white;
+            text-align: center;
+            font-style: italic;
+        }
+
+        img {
+            border-radius: 110px;
+        }
+
+        div {
+            text-align: center;
+            padding: 8px;
+        }
+
+    </style>
+</head>
+<body onload="carregar()">
+    <header>
+        <h1>Hora do Dia</h1>
+    </header>
+    <section>
+        <div id="msg">
+             testando...
+        </div>
+        <div id="foto">
+            <img id="imagem" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnZ3BpSF0O8iTi9k9iRgmWfmSV5ofz8SzKOw&usqp=CAU" alt="Foto da noite" width="200" height="200">
+        </div>
+    </section>
+    <footer>
+        <p>&copy; Grungefox</p>
+    </footer>
+    <script>
+        alert('Olá!')
+        function carregar() {
+        var msg = window.document.getElementById('msg')
+        var img = window.document.getElementById('foto')
+        var data = new Date()
+        var hora = data.getHours()
+        msg.innerHTML = `Agora são ${hora} horas.`
+        if (hora >= 5 && hora <= 12) {
+            img.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6-FGbTahFXr8VRpkmmwp181u7diNomVhNHw&usqp=CAU'
+            document.body.style.background = '#e2cd9f'
+        } else if (hora >= 12 && hora <= 18) {
+            img.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnZ3BpSF0O8iTi9k9iRgmWfmSV5ofz8SzKOw&usqp=CAU'
+            document.body.style.background = '#b9846f'
+        } else {
+            img.src = 'https://vgartsite.files.wordpress.com/2019/10/red-dead-redemption-2_20190823182422.jpg'
+            document.body.style.background = '#515154'
+        }
+        }
+       
+    </script>
+</body>
+</html>

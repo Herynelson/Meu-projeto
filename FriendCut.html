@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FriendCut</title>
+    <link rel="icon" href="imagem/friendcutpin.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Ubuntu, sans-serif;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            max-width: 1300px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 10px;
+        }
+
+        .sidebar {
+            flex: 0.5;         
+            min-width: 10px;
+            margin-top: 10px;
+            padding-left: 10px;
+            padding-right: 30px;
+            border-right: 1px solid rgb(227, 228, 235);
+        }
+
+        .sidebar__logo {
+            margin-bottom: 0.1px;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            padding: 14px;
+        }
+
+        .sidebarOptions {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 15px;
+        }
+
+        .sidebarOptions h2 {
+            font-weight: 500;
+            font-size: 20px;
+            margin-right: 10px;
+        }
+
+        .sidebarOptions:hover {
+            background-color: rgb(171, 189, 240);
+            border-radius: 30px;
+            color: white;
+            transition: color 100ms ease-out;
+        }
+
+        .sidebarOptions__active {
+            color: rgb(13, 58, 180);
+            padding: 10px;
+        }
+
+        .sidebar__button {
+            width: 100%;
+            background-color: rgb(13, 58, 180);
+            font-size: 20px;
+            border: none;
+            border-radius: 30px;
+            color: white;
+            height: 50px;
+            width: 100px;
+            margin-top: 20px;
+            cursor: pointer;
+            margin: 15px;
+        }
+
+        .feed {
+            flex: 0.5px;
+            border-right: 1px solid rgb(235, 228, 227);
+            min-width: fit-content;
+            overflow-y: scroll;
+        }
+
+        .feed__header {
+            position: sticky;
+            top: 0;
+            background-color: white;
+            z-index: 100;
+            border: 1px solid rgb(235, 228, 227);
+            padding: 15px 20px;
+        }
+
+        .feed__header h2 {
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .feed::-webkit-scrollbar {
+            display: none;
+        }
+
+        .feed {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .cutbox__input img {
+            border-radius: 60%;
+            height: 80px;
+            width: 80px;
+        }
+
+        .cutbox {
+            padding-bottom: 10px;
+            border-bottom: 8px solid rgb(190, 193, 196);
+            padding-right: 10px;
+        }
+
+        .cutbox form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cutbox__input {
+            display: flex;
+            padding: 20px;
+        }    
+        
+        .cutbox__input input {
+            flex: 1;
+            margin-left: 20px;
+            font-size: 20px;
+            border: none;
+            outline: none;
+        }
+
+        .cutbox__button {
+            background-color: rgb(13, 58, 180);
+            border: none;
+            color: white;
+            font-weight: 600;
+            border-radius: 30px;
+            width: 80px;
+            height: 40px;
+            margin-top: 20px;
+            margin-left: auto;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: rgb(79, 79, 231);
+        }
+
+        .post__avatar img {
+            border-radius: 50%;
+            height: 40px;
+            width: 40px;
+        }
+
+        .post {
+            display: flex;
+            align-items: flex-start;
+            border-bottom: 1px solid rgb(190, 193, 196);
+            padding-bottom: 10px;
+        }
+
+        .post__body img {
+            width: 450px;
+            height: 450px;
+            object-fit: contain;
+            border-radius: 20px;
+        }
+
+        .post__footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .post__badge {
+            font-size: 14px !important;
+            color: rgb(79, 79, 231);
+            margin-right: 5px;
+        }
+
+        .post__headerSpecial {
+            font-weight: 600;
+            font-size: 12px;
+            color: gray;
+        }
+        
+        .post__headerText h3 {
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+
+        .post__headerDescription {
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+        
+        .post__body {
+            flex: 1;
+            padding: 10px;
+        }
+
+        .post__avatar {
+            padding: 20px;
+        }
+ 
+        .widgets {
+            flex: 0.3;
+        }
+
+        .widgets__input {
+            display: flex;
+            align-items: center;
+            background-color: rgb(236, 229, 229);
+            padding: 10px;
+            border-radius: 20px;
+            margin-top: 10px;
+            margin-left: 20px;
+        }
+
+        .widgets__input input {
+            border: none;
+            background-color: rgb(236, 229, 229);
+        }
+
+        .widgets__searchIcon {
+            color: gray;
+        }
+
+        .widgets__widgetTrending {
+            margin-top: 15px;
+            margin-left: 20px;
+            padding: 20px;
+            background-color: #f5f8fa;
+            border-radius: 20px;
+        }
+
+        .widgets__widgetTrending h2 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .trending {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-size: 18px;
+            color: aqua;
+            border-bottom: 1px ridge#D5DDE9;
+            cursor: pointer;
+        }
+
+        .trending:hover {
+            color: #a7dbfa;
+        }
+
+                /* ANIMAÇÕES CSS */
+                .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .slide-up {
+            animation: slideUp 0.3s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .pulse {
+            animation: pulse 0.5s ease-in-out;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .bounce {
+            animation: bounce 0.5s ease-in-out;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* ESTILOS PARA MENU MOBILE */
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            background-color: rgb(13, 58, 180);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        @media (max-width: 1200px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .sidebar {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: white;
+                z-index: 999;
+                overflow-y: auto;
+                padding: 60px 20px 20px;
+            }
+            
+            .sidebar.active {
+                display: flex;
+            }
+        }
+    
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar__logo">
+            <img src="imagem/friendcut.png" alt="FriendCut">
+        </div>
+        <div class="sidebarOptions__active">
+             <span class="material-icons">home</span>
+             <h2>home</h2>
+        </div>
+        <div class="sidebarOptions">
+            <span class="material-icons">notifications_none</span>
+            <h2>notifivações</h2>
+       </div>
+       <div class="sidebarOptions">
+        <span class="material-icons">mail_outline</span>
+        <h2>mensagens</h2>
+   </div>
+   <div class="sidebarOptions">
+    <span class="material-icons">search</span>
+    <h2>pesquisar</h2>
+</div>
+<div class="sidebarOptions">
+    <span class="material-icons">bookmark_border</span>
+    <h2>salvos</h2>
+</div>
+<div class="sidebarOptions">
+    <span class="material-icons">list_alt</span>
+    <h2>listas</h2>
+</div>
+<div class="sidebarOptions">
+    <span class="material-icons">perm_identity</span>
+    <h2>perfil</h2>
+</div>
+<div class="sidebarOptions">
+    <span class="material-icons">more_horiz</span>
+    <h2>mais</h2>
+</div>
+<button class="sidebar__button">Cuttiz</button>
+    </div>
+    <div class="feed">
+        <div class="feed__header">
+            <h2>Página Inicial</h2>
+        </div>
+        <div class="cutbox">
+            <form>
+                <div class="cutbox__input">
+                    <img src="herynelson.jpg" alt="Hery Nelson">
+                    <input type="text" placeholder="O que está pensando?">
+                </div>
+                <button class="cutbox__button">Cuttiz</button>
+            </form>
+        </div>
+        <div class="post">
+            <div class="post__avatar">
+                <img src="https://cdn.ome.lt/static/omelete25/img/omelete.svg" alt="hs">
+            </div>
+            <div class="post__body">
+                <div class="post__header">
+                    <div class="post__headerText">
+                        <h3>Omelete<span class="post__headerSpecial"><span class="material-icons post__badge">verified</span>@Omelete</span></h3>                        
+                    </div>
+                    <div class="post__headerDescription">
+                        <p>Demon Slayer: Kimetsu no Yaba: Castelo Infinito é a maior bilheteria de um anime em formato de filme fora do Japão.</p>
+                        <p><a href="#" style="text-decoration: none; color: aqua;">#DemonSlayer</a> <a href="#" style="text-decoration: none; color: aqua;">#anime</a>
+                        <a href="#" style="text-decoration: none; color: aqua;">#KimetsunoYaba</a> <a href="#" style="text-decoration: none; color: aqua;">#Omelete</a></p>
+                    </div>
+                </div>
+                <img src="imagem/ds.jpg" alt="ds">
+                <div class="post__footer">
+                    <span class="material-icons">comment</span>
+                    <span class="material-icons">repeat</span>
+                    <span class="material-icons">favorite_border</span>
+                    <span class="material-icons">publish</span>
+                </div>
+            </div>           
+        </div>
+
+        <div class="post">
+            <div class="post__avatar">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAPFBMVEVHcEwGq0kGsEsGrEkGq0gFqkcHrEkKrkoApjk1tGBmw4Xg9Oj////M6taa16/t+fKz4cNIum+M0aNawHsT8aATAAAAB3RSTlMAbb7k9v9JOomd4gAAAOtJREFUeAF9kwUCxCAMBKnkCM2i/f9fL6XGCZ0KMriYjWGcZmqYp3EwOy9r6QdrX7ujv1TbcWq1v74czEhdRjP15WTmvpzNHjI5R+SsxqzGmCq75EUAH+CZQgRk4UYuACKgMqmKwNLICMmuqMzAypwgt8xAZmIPHxBTSh5wl1wRt461zwTs5LbmetYUl7O+TZ+CuOS09xmISoz2lhmVfbQxAolvyS6JhKSSigAS2kVYHSuCwHWtLDfSRqRSZB9jQ114F1Ep/LXwU61avEha+XvL9s3mjd/Nfjwmpi/vo2n/Hc3mUNv2293DdXgDUjYUtfn+5vMAAAAASUVORK5CYII=" alt="hs">
+            </div>
+            <div class="post__body">
+                <div class="post__header">
+                    <div class="post__headerText">
+                        <h3>GE<span class="post__headerSpecial"><span class="material-icons post__badge">verified</span>@ge</span></h3>                        
+                    </div>
+                    <div class="post__headerDescription">
+                        <p>Semifinais da Copa do Brasil 2025: datas, horários e onde assistir aos jogos.</p>
+                        <a href="https://ge.globo.com/rj/futebol/copa-do-brasil/noticia/2025/10/29/semifinais-da-copa-do-brasil-2025-datas-horarios-e-onde-assistir-aos-jogos.ghtml">Leia a matéria.</a>
+                    </div>
+                </div>
+                <img src="https://s2-ge.glbimg.com/V5AZrjKXiI4jBaz6VS9VAvUgR74=/0x0:910x607/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_bc8228b6673f488aa253bbcb03c80ec5/internal_photos/bs/2023/Q/r/ZInnk8Q1eb8QGmGypsGg/20211215225611-599.jpeg" alt="ds">
+                <div class="post__footer">
+                    <span class="material-icons">comment</span>
+                    <span class="material-icons">repeat</span>
+                    <span class="material-icons">favorite_border</span>
+                    <span class="material-icons">publish</span>
+                </div>
+            </div>           
+        </div>
+
+        <div class="post">
+            <div class="post__avatar">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAM1BMVEVHcEwQexAQexAQexAQexAQexAQexAQexAQexAQexAQexAQexAQexAQexAQexAQexAQexDpA3hwAAAAEHRSTlMANOCuC4SX7cJebhn2RdEqYqmcbgAAAN5JREFUKJFtU1sSxCAIQ6sFq065/2nXByrWzceOJUMC0QUYMJ6QGckb+OJhhWfnnHP57sydy8fRDBAQw7eWGfOngiyVWMUuzV21EtvRNiu7OFUIMmIaXJJCtUc534OUqRnL7nI8ZJkNeDmp1ZyUPNAyKDn1bGQMEksabt2ZxFSJXnNhEYaVNPES6ffQZNPsm72pyZJMM7aTjUPT8L3xuM9UVzH1B17e8EJtMjW+uPJcOccaX1HfDKdtz4VmXgoOei5x5qvgIeqb37FehjlJ9Xij3SkbQSPgos73+e/v8AMiZBlpHad58QAAAABJRU5ErkJggg==" alt="hs">
+            </div>
+            <div class="post__body">
+                <div class="post__header">
+                    <div class="post__headerText">
+                        <h3>Xbox Brasil<span class="post__headerSpecial"><span class="material-icons post__badge">verified</span>@xboxBr</span></h3>                        
+                    </div>
+                    <div class="post__headerDescription">
+                        <p>O destino definitivo de FPS gratuito. Jogue <a href="#" style="text-decoration: none; color: aqua;">#Battlefield6</a> agora no <a href="#" style="text-decoration: none; color: aqua;">#xboxgamepass</a></p>
+                    </div>
+                </div>
+                <img src="https://cms-assets.xboxservices.com/assets/0a/3d/0a3dcfc0-217b-47d7-858b-447193b4bf37.jpg?n=5748290_Small-tout-1084_475x534.jpg" alt="ds">
+                <div class="post__footer">
+                    <span class="material-icons">comment</span>
+                    <span class="material-icons">repeat</span>
+                    <span class="material-icons">favorite_border</span>
+                    <span class="material-icons">publish</span>
+                </div>
+            </div>           
+        </div>
+
+        <!-- post 2 -->
+
+        <div class="post">
+            <div class="post__avatar">
+                <img src="https://scontent.fbhz2-1.fna.fbcdn.net/v/t39.30808-6/481712373_1195154735297143_5870098881126112459_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=Upmpp4ajPY8Q7kNvwEmHIuw&_nc_oc=Admtx2f3DWJG-d5f7UikW854vaAPoq-f83RwfqCdWxCema3urVUu1FxZjWzBSwOcRe0yY2LBwKXS12S3sMFRWtfl&_nc_zt=23&_nc_ht=scontent.fbhz2-1.fna&_nc_gid=LmEKRyrYfkCjOxZHVqcpGA&oh=00_AfiqCbMv4genlCT9z9UiaSPUc4NLUp1BmT1kcs2L9QxcXw&oe=69130093" alt="cr">
+            </div>
+            <div class="post__body">
+                <div class="post__header">
+                    <div class="post__headerText">
+                        <h3>Cruzeiro<span class="post__headerSpecial"><span class="material-icons post__badge">verified</span>@cruzeiro</span></h3>                        
+                    </div>
+                    <div class="post__headerDescription">
+                        <p>+3 pontos pro cabuloso.</p>
+                    </div>
+                </div>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLyuF5pbEiM6arO5VAlvIzKijJIcBXw7Erbw&s" alt="ds">
+                <div class="post__footer">
+                    <span class="material-icons">comment</span>
+                    <span class="material-icons">repeat</span>
+                    <span class="material-icons">favorite_border</span>
+                    <span class="material-icons">publish</span>
+                </div>
+            </div>           
+        </div>
+
+        <!-- post 2 -->
+
+        <div class="post">
+            <div class="post__avatar">
+                <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxAOERAREhAQDxAQFhsQFhAQFQ8QEBARFRYXGBcZExgYHSggGBomGxYVIjEiJSsrOi4wFyAzOzMsNygtOisBCgoKDg0OGxAQGi0lICItLS0tLy8yLS0uKy0tLS0vKy0vLy4tLS8tKy8tLS0tKy0tLS0tLS0tKy0tLS0tLS0rLf/AABEIAOEA4AMBIgACEQEDEQH/xAAcAAACAgMBAQAAAAAAAAAAAAAAAgUGAQQHAwj/xABJEAABBAEBAwYHDQcDAwUAAAABAAIDEQQFBhIhBxMxQVFhFCIjUnGRkxckMkJUYnN0gaGys9MVMzRygqLBU2OxCFXRQ4OSo+H/xAAZAQEBAQEBAQAAAAAAAAAAAAAAAQIDBAX/xAAsEQACAgICAQMCBQUBAAAAAAAAAQIRAyESMUEEUWEycVKBkbHREyKhwfAF/9oADAMBAAIRAxEAPwDuKEKD2v2pxtIxzPO75rIm1zkz/NYP+T1ICXysmOFjpJHsijYN50kjgxjQOtxPABcw2l5b8HHLmYsT8544b98zj30cHEFzq7m0eorju2u22ZrEm9O/dhabjxmE81H1Anz318Y9pqhwVaXaOL3JZ0bUuWrV5r5s4+KOrmog9wHeZS4E/Yos8quufL3eyxP01TULpwiC5e6prny93ssX9NHuqa58vd7LF/TVNQnCILl7qmufL3eyxf00e6prny93ssX9NU1CcIguXuqa58vd7LF/TR7qmufL3eyxf01TUJwiC5e6prny93ssX9NHuqa58vd7LF/TVNQnCILl7qmufL3eyxf00e6prny93ssX9NU1CcIguXuqa58vd7LF/TR7qmufL3eyxf01TUJwiC5e6prny93ssX9NHuqa58vd7LF/TVNQnCILl7qmufL3eyxf00e6prny93ssX9NU1CcIguXuqa58vd7LE/TUlpvLRrEPw34+SP8Aeia016Yi1c7QnCIPoLZvlyw5iGZkL8Nx4c6wmeH0uoBzfUfSupYObFkRtlhkZNE8W2SNwexw7iF8Vqf2Q2vzNIl5zHkO4T48DyTDKPnN7exw4j0WsSxews+vEKt7DbZY2swc7D4kjKbLjuIMkLz0X5zTRp3XR6CCBZFw6Ka2p58WLDLPK7cihYZHu6aa0WaHWe4dK+TtuNqptXyn5EhLWC2ww9UMV8B/MeknrPcAB1b/AKhtoiyPH09hrnvfE1f6bTUbT3F4cf8A2wuF0vRih5IxUJqRS7EFQmpFIBUJqRSAVCakUgFQmpFIBUJqRSAVCakUgFQmpFIBUJqRSAVCakUgFQmpFIBUJqRSAltk9op9Kyo8qE+MzxXMJps0RreY7uND0EA9S+s9C1aHPx4cmF29FM3faeFjqLXdjgQQR2gr42pdn/6eNoiH5GnvJLXDwmK/iuFNlaPSCxwHc49a45Y6sqKRys6j4Tq+a67bE8Y7R1NETQ1wH9YeftKqNKX2uN6hqB6zlTn/AO56iqXaK0jItIpNSKVoC0ik1IpKAtIpNSKSgLSKTUikoC0ik1IpKAtIpNSKSgLSKTUikoC0ik1IpKAtIpNSKSgLSKTUikoC0ik1IpKAtIpNSKSgLSsPJ5nnF1TT5R/rtiPcybyTv7XlQFLa0kkZGOR0iWM/bvtUa0Dc2rHv/P8ArU/5z1FUpbase/8AP+tT/nPUXS1FaIxaRSakUrRBaRSakUlAWkUmpFJQFpFJqRStCxaWQ209AI3lril2SwbCnELet33heZWKWuUV1ElN+TYEUfb969G40R+PX9Tf8rTpFK/1F+FGXB/iZIfsm/gv9Y/yF4S6ZK3ju7w7WeN93T9y12kjiCQe0EgrextWlZ0kPHY7p9Y4q3il2qObWaP0tP76I6kUrNDl4uVTZWiN/QC7h6nj/K19S2aliBdHczOmh+8aPQPhfZ6lJYXVxdoxH1keXDIuL+en9mQNIpMilxo9YtIpNSKSgLSKTUikoC0tnSx5eD6Vn42rwpbOmDy8H0rPxtRopu7VD39n/Wp/znqMpSu1I9/Z/wBan/OeoylYrRli0ik1IpWgLSKTUikoC0ik1IpWgLSE1IpXroC0ik1IpZoC0ik1IpKAtIpNSKSgLSKTUikoCUpfRdelxSB+8i643HoHzD8X0dCi6RS1FuLtHPLihljxmrRecrQ8fVIzPiuDJvjNPihzuyQfFd87r71SMjHfE9zHtLHsNOa7gQVtaVqUuJIJYnU4cCDxa9vmvHWF0HOwYNexhPABHlxDdLSRYPTzbz1tPxXf/oXR1Pa7PkPNk/8APmo5HyxPSfmHw/j5OYUsUvWWJzHOa4Frmktc1wotcDRBHbaWlxo+1YtIpNSKSiiUtnTR5aD6Vn42rxpbGmjy0H0rPxtRoG7tR/HZ31qf856jKUrtP/HZ31qf856jFpLRH2LSGDeIaAXOPQ1tlx9AHFTmxuJiTZsDM2VsOLe89zjutduiwxzvihxABPDhfEEhdN1vlKi0p/MYOHpj4a3myYk7XxkX8dscYDXddWfSsSk06SsqRyL9kZVX4LlV28zPX4VpyDdO64Frh8V1tcPSDxXWouXHJB8bAgcPmyyMP3tKl8bli07KAZmYMjGu4G2xZcI9N04j0NWeWRdx/wAlpe5w6kUu+N2R2b1oE4jo4pKv3o/mZGD50DxQHpYPSqTtRyQ52IHSY5GdEONMG5kNH0dkP/pNnzUjmi3T19w4s5zSKTuaQSCCC07paQQWkdIIPQe5YXajAtIpdA2L5NJM6JuVlTDBxHkBhO6Jp9400s3uDGk9BN73UKIJ6Bk8jmktiNyZMbgP37pW2D2uBbufcPsXGWaEXRtRZ8/0ilZ9tdisjSHRc4+OaKcExzRb267dqw4H4J4gjibHX01Wl1TTVoyLSKTIVogtIpMhKAtIpMhKAtKT2d1mTAnbMziPgvj6pI+senrB6j9qjkIZyQjki4TVp9nROUHRI8mBmqY3jNc0GXdHwmGgHkdTm9Du7s3Vzml0nkg1hpkk06anRZAc6NruI368oz0ObZrta7tVR2w0F2m5k2Mb3GnfjcfjQu4sPeRxae9pUbt0eT0UJ4U8MtqP0v49vyISkUmQrR7RaWxpo8tB9Kz8YXitjTf30H0jPxhRrRTc2mHv3O+tT/nPUdSlNpR79zvrU/5z1G0tJaMvsWkUmpFK0BaUpstob9Sy4MRjhGZibkILxG1rXPcSLF8G9o4kKMPDp4LpXIfpc37Q590Mwhbjv3ZnRyCIuc6MANeRRJBd0HqKxkfGLZYq2UHVtOlwMmWCTxJ8Z+7vMJBBHFrmOHEWCHA9PEK8bIcrOZhlseVvZ0A4bziPCmDueeEnofxPnLe5UtjM/J1KefHxJJopGxkvYY6L2sDDwLgehoXPtR0HMxbM+Jkwtb0vkilbGP663fvWVwyRV0XcXo7prGzul7TweEwSNbPW6MmMVIxwHwMhnDerhwdRA6CAePEdW0CTTctmPnM3WB7S8t3iyXH3xvOjcOJG7vd46KBRsztDkaZO2fHfR4B8Zvm5mea8f8HpHUu66pg4u1OmNkjpryC6J7vh4+QODmP+bYojrFEfFK5bwun9P7GtS+5N5GDGH+HbrsoQQ1jQQhrmsBabdCL3TI8EN3upoAFAuvk+q7N67r+RvZkZwsVp3g2VzOZx2DzIwbkkq/GIF8eLRQXlpe3WuPMGBjQs8Iw2Ohkj3GPdLzNMJk3iA0t3a8U8Se8BVrXts9T1PyM08jmvO74NCzm2vd5pY0bz/wCV1+hTHinF+P4K5Jm/yl7QwZLsXCxDvYWnM5lkl2JnANaXA/GaAwAO67ceghUqlbNP5OdXyAC3Cexp43M6KE/a17g8epe+TyXaxGL8EEn0cuOT6i4E/Yu8ZQiqtGHb8FMpFLYdhygygxSeQO7L4rvImy2pOHieMCONcQrXsBsdHrEeaznXRZUDWPh6OacHb4IkFXVtaLHRYPHoWpNRVsyk2UykUt6PScl0r8duPM+eMlr4Y2PkexzTuusMB4A9fQp7G5ONYk4jAkA7XyY0f3OeD9yrlFdstMqdIpWHaHYvUNOY2XJxyyJx3eca+ORrXHoDt0ndvv4LTx9AyJMSfODAMaBzWF7jW+972s3YhXjEFwvor08ETTV2KZFUils4uDNNvGKGaYM4uMUckgYPnboO79q8AqQ9MLJfBJHNGd2SJ7ZGnsc0gi+0cOhWHbnauTV3QSyYrMfmmujD2F7hKHEEAlwA4brqHziq1S7G68zZIedA31DGya/Lb965zai0681+pYqzjVIpNSKXSiC0tjTh5aH6Rn4wvGlsacPLQ/SM/GEa0Db2k/jc761P+c9R9KS2jHv3O+sz/nPUfS0loj7Fpbmjac7LyIMdhDXTvbGHO6G7x4k9tCzXXS1aTwyOjc17HFj2OD2vbwc17TbSD2ggFGiWdQxNe2f0VxZDjTahlREtdkvYzhI0lrt10hG5xseI2u8q2bCcpB1fLfjeCeDtZC6cP53nS7dfG2i3cFfvL6T0KgxafjbRgvifHh6wBcsLvFx86hxkZXwXnpNX12D8JTfI/s5l4OoZPhOPJCW45YC4Wx+9Iw+I8W13weorx5IQ4tv6vk7Ju9dEttnyoy6Zmy4ow2TNjDDvmV0bjvsDujcPavDS+WnFkLW5GJNBvHd3o3NyGi+HHg1x9AaT3Klcsja1abvjiP8AZX+FVtG1WfCmbPA8RyssBxax/A9IpwI49vStx9PCUE63Rl5GmdD5bNmsXG8Hy4GNhfkPMckTBuNed0u5wN+KeFHt3h19Oz/0/wCW/fzoLJjqOYDqa+3NcftAb/8AAKg5+o6hreQ3e5zMnA3WRRtG7G0njTW8GC6tx7BZ4LtvJxsmNFxZZJ3sE8oEkzrHNwxxgkN3j1NBcSe0nqAWcv8AZi4yeyx3K0amjaayPaTUJG/HxGSEdQdI5jXevmQftK8OT3Cxo9S1t3k/ChkuDGuI32wvt5LB0gOc43XmhavJrrQ1HV9VyRe5IxjYwbB5pjt1po9FhocR1FxUXFpGPka5rHOQRZeRE3ncbFnIbDPKY2F29fA1beB4eMT1WObi7cX7L/Rq+mi4aoNpS48wdHbH1X4WZK77G6qXtRqG1eGx0ssgELRbpMVmJIxg7XWwvaO+qHarXpMsjm7uRs2+GQcAcQ6du1815lYWegE+lS+z2lT47st88rxhyAc3iTyuynQMDfHL5X2aPHxN5wA6+zKko9pf9+pasiOSjAih0lsk+6TnyOkldMQ7nTLJzTA4u+FvDc4HpLz1lV3QdDOhbQRRNvwXPjkZC4kmm0JCwk9Ja5jRfY9vaVvbRnc2Ux90lpMGGQQacDzkDrBHQbU/shqUGvYmNNL/ABWHK1792muZkR/GHzHtJ4djiOkcK20pS8NtfwNaRVtpsHPg2hD9OaOdyYGSy7wBh5vf5qQygkW0bkTuBu+jrV+2pytSibEMDHgyHuvnHTv3GMAAqhvAkkk+pR+MGza9O8P/AIPBjgc0efkSuk8b+mNhr5yi9c0jaLJy53QZsWHhlwEbCWOeGhoBNCIk24OPF3Wsv+5q60vI6Klrmv61nZI0bKjxIHZRYx4hZvkRHxy9rnSOHBrS7t8XqVg2i0X9o5GPomLcGn6c1kmVI3p3iPJxtJ+E8tJdZvi/eNltGI07S59N2gwjm5LcuTJY4NnPAhxjcxoLT8HjTRXTveldZ8F8HjndBE10shdNukhvOzEUN93UODW31Bo7FvJJRrj7flfuSKu7KtqO0OLo8uBpeJA10k0kcZiYSBBC94DpHniXPPE8eJouJ7eQ7ZaVH+28jGYRFHLkxssAVH4QIi812B0jjXDoXSdI2aZo5yNY1TIZPlnef4lljHvFbsW9Rc8jxG8AAOHRxXGNYz35k8+RIBvzvdIR0hu8eDR2gCh9i64Iq217d+7MzetnWPcUg/7hJ7OP/wAq3aRsXHj6ZPpvhDpI5hI3nS1ocznRx4XXAm1818w3zW+oLsGwMYZs3qxoAOblHsB97Nb/AIUy45pK5XteBCSvSPb3FMf/ALhL7OL/AMrnm3uzTNKyhjsmM4MTZt8hrSC5z27pAPzAf6lXOYb5rfUEzWAdAA9HBd4Y5J7lf5GHJeEYpe+njy0P0jPxheVLY08eWh+kZ+MLo1ozZt7SD37m/WZvznqOpSe0Y9+5v1mb856j6WorRH2JSKT0ilaIKwlpDgS1zSHBzSWua4cQWkcQQesLs3JJtxlZkzsPKe2XdiMkcxFSuLXNBa8jg7g6wavxTZK43SeCV8bmvY98b28WvY5zHtPRbXDiD6Fzy4lONM1GVM75tXPs+/KdFniAZQa23SNladwi2gytFdB6CVHQYGycfjB+A7rqSd839r3n/hcUmkc9xe9znvcbL3kve49pJ4kpKXJempVyZr+p8Hd5+UfRdPYY8Vu/XRFhw82y/wCZwayvQSuabacoOXqoMdDHxbvmIyXGSujnX0N7toADuJAKqdIpbh6eEXfb+SPI2TWx+082kzmeJrJN9hifHJvbrmkgggjoII6ePSeC09V1ibJypMwnmppH86HRFzDG4ABu4bsUABdrRpFLpwV35M26ou2FysatE0NL8eevjzREv+3m3NB9SitoNutS1Bro5sjdhcKMMLRFG4dYdXjOHcSR3KvUilFignaSLzfuTOVtVly4UWnve040RBFNqQhtlrXOvi0cK4dQ4laOk6tk4TzJjzSQPcN0lhHjN7HA8D9vQtSkUtcFVUS2T+ye2GTpuU/JF5Bm4TMlc65hd2X8SHA9Bo9J4cVcdY5Zp3tLcbFZA4/+rK/niP5WAAX3kn0Ll9IpYlhhJ20VTa0dJ5IcKXUNRlzsh753Yzd7fkJJdNLbW91Bgk4DgLbVcFaOUnlEm0vIjx8dkEjub5yQzCRwaXGow3dc3qa4kd7ehevIfiBmnPk65p3uPcGhrAP7SftXIdsdQOXn5k3SHyua36OPybP7WNXmUFkzO+kdG+MF8ibSbTZepvD8mXfDfgRtG5DHfTut7e82e9Q9J6RS9iikqRybsSlatN22lx9Nm01sEZZMJGmYucHgS/C8WqJqx0qsUilJQUuwm0JSKT0ilqiWJS2NPHlofpGfjC8qXvp48tD9Iz8QUa0U3Nox78zfrM35z1HUpPaMe/M36zN+c9R1LUVpGX2LSKTIpWgLSKTIpKAtIpNSEoC0ik1IpKAtIpNSKSgLSKTUikoC0ik1IpKAtIpNSKSgXfk+2+/ZUU8Ekb5Yn3JGY93ejmLaohxA3DTTw6DfA3worG0AOwUnpCyoJNteSuTaoWkUmpFLVEFpFJqRSUBaRSakUlAWl74A8rD9Iz8QXlS2MAeVh+kZ+II1oG1tEPfmb9Zm/Neo+lJbRD35m/WZvzXqPpWPSI+xaRSakUtUSxaRSakUlCxaRSakUlCxaRSakUlAWkUmpFJQFpFJqRSUBaRSakUgFpFJqRSULFpFJqRSUBaRSakUlCxaRSakUgFpFJqRSUBaXvgDysX0jPxBeVL3wB5WL6Rv4go1oI29oR78zPrE35r1H0p7bjE5nUc5n+86T7JfKj7nqDpIbimH2LSKTUilqiC0ik1IpKBilik1IpALSKTUikoC0s0s0ikoGKWKTUikoC0ik1IpKAtIpNSKSgLSKTUikoC0s0s0ikoC0ik1IpUC0ik1IpSgYpe2APKxfSN/EF5UpPZnFM2ZhxgXvTx3/KHguP2NBP2KS0mF2Xjlr0gsngywPEmbzDz1CRllt95aT7Nc2X0vtNorNQxpcd/DfFtf0mOQcWOHoNcOsWOtfOOoYMmNLJDK3cliduOb2Hu7QRRB6wQV5vRZeUOPlfsdc8alfuayFmkUvYcDCFmkUgMIWaRSAwhZpFIDCFmkUgMIWaRSAwhZpFIDCFmkUgMIWaRSAwhZpFIDCFmkUgMIWaRSAwr/AMjejmbMdkkeJitNH/ekBaK7aZv36WqjY2O+V7I42l8khDGsb0ucegBfRWx2z7dNxY4BTn/DlePjyurePoFBo7mheT1mXhj4+WdsMblfsTap3KBsU3U2CSPdjy4xTXHg2VvTuSffR6r71cUL5EJyhLlE9koqSpny7mYkkEjopWOikYacx4pwP+R2EcD1LxX0ftHsxi6kzdnjtzRTZWeLLH/K7s7jY7ly3XOSzNgJdjuZlx9QsRTAd4cd0+kHj2L6+H1uOf1aZ454ZR62UJC3M7SsnHvnseeGuuSORjfsJFEehaPON84esL2LfRxehkJecb5w9YRzjfOHrCtEsZCXnG+cPWEc43zh6wlCxkJecb5w9YRzjfOHrCULGQl5xvnD1hHON84esJQsZCXnG+cPWEc43zh6wlCxkJecb5w9YRzjfOHrCULGQl5xvnD1hHON84esJQsZCXnG+cPWEc43zh6wlCxkJecb5w9YW5hadPkVzME01/6Uckg9bRQUeuymqnx4HyvbHG10kjzutYwFznHsACu2icl+dOQZtzEj698iSUjuY016yPQupbM7J4mmt8iy5CKdPJTpXd1/FHcKC8mb1mOHW2dYYZS70QnJ3sMNPHhE+6/LeKAFFuO09LWnreet32DhZdeEIXx8mSWSXKR7IxUVSBCELBoEIQgBaE3wihCqIxEIQtEBCEIAQhCAEIQgBCEIAQhCAEIQgBCEIBmdI9KkEIUZUCEIWSghCEB//9k=" alt="hs">
+            </div>
+            <div class="post__body">
+                <div class="post__header">
+                    <div class="post__headerText">
+                        <h3>Disney+<span class="post__headerSpecial"><span class="material-icons post__badge">verified</span>@disney+</span></h3>                        
+                    </div>
+                    <div class="post__headerDescription">
+                        <p>Assista agora Quarteto Fantástico: Primeiros Passos no Disney+!</p>
+                    </div>
+                </div>
+                <img src="https://lumiere-a.akamaihd.net/v1/images/ffour_006c_g_por-br_4x5_47a1884f.jpeg?region=0%2C0%2C640%2C800" alt="FF">
+                <div class="post__footer">
+                    <span class="material-icons">comment</span>
+                    <span class="material-icons">repeat</span>
+                    <span class="material-icons">favorite_border</span>
+                    <span class="material-icons">publish</span>
+                </div>
+            </div>           
+        </div>
+
+        <!-- post 2 -->
+
+        <div class="post">
+            <div class="post__avatar">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgbRdTWLXKD-q3umN6UoIfHRSe9HPQcnd5tg&s" alt="hs">
+            </div>
+            <div class="post__body">
+                <div class="post__header">
+                    <div class="post__headerText">
+                        <h3>adidas<span class="post__headerSpecial"><span class="material-icons post__badge">verified</span>@adidas</span></h3>                        
+                    </div>
+                    <div class="post__headerDescription">
+                        <p>FIFA World Cup New Kits 2026.</p>
+                    </div>
+                </div>
+                <img src="https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2025/11/camisas-adidas-selecoes-copa-do-mundo-e1762358030752.jpg?w=1200&h=900&crop=1" alt="ds">
+                <div class="post__footer">
+                    <span class="material-icons">comment</span>
+                    <span class="material-icons">repeat</span>
+                    <span class="material-icons">favorite_border</span>
+                    <span class="material-icons">publish</span>
+                </div>
+            </div>           
+        </div>
+
+        <!-- post 2 -->
+
+        <div class="post">
+            <div class="post__avatar">
+                <img src="imagem/salim.jpg" alt="hs">
+            </div>
+            <div class="post__body">
+                <div class="post__header">
+                    <div class="post__headerText">
+                        <h3>Salem Pacheco<span class="post__headerSpecial"><span class="material-icons post__badge">verified</span>@Saleem</span></h3>                        
+                    </div>
+                    <div class="post__headerDescription">
+                        <p>Papis e eu 💝.</p>
+                        <a href="#" style="text-decoration: none; color: aqua;">#Papito</a>
+                    </div>
+                </div>
+                <img src="imagem/papis.jpg" alt="ds">
+                <div class="post__footer">
+                    <span class="material-icons">comment</span>
+                    <span class="material-icons">repeat</span>
+                    <span class="material-icons">favorite_border</span>
+                    <span class="material-icons">publish</span>
+                </div>
+            </div>           
+        </div>
+
+    </div>
+    <div class="widgets">
+        <div class="widgets__input">
+            <span class="material-icons widgets__searchIcon">search</span>
+            <input type="text" placeholder="Buscar no FriendCut">
+        </div>
+        <div class="widgets__widgetTrending">
+            <h2>Em Alta</h2>
+            <div class="trending">#CodeMaster</div>
+            <div class="trending">#RJ</div>
+            <div class="trending">#Flamengo</div>
+            <div class="trending">#Lula</div>
+            <div class="trending">#ViniJr</div>
+            <div class="trending">#JamesGunn</div>
+            <div class="trending">#It</div>
+            <div class="trending">#StrangerThings</div>
+            <div class="trending">#Masterchef</div>
+            <div class="trending">#Brasil</div>
+        </div>
+    </div>
+    <script>
+        function search() {
+            const searchInput = document.getElementById('searchInput');
+            const searchValue = searchInput.value;
+            console.log(searchValue);
+        }
+        document.getElementById('searchInput').addEventListener('input', search);
+        document.getElementById('searchInput').addEventListener('keydown', function(event) {
+            if(event.key === 'Enter') {
+                search();
+            }
+        });
+        function search() {
+            const searchInput = document.getElementById('searchInput');
+            const searchValue = searchInput.value;
+            console.log(searchValue);
+        }
+        document.getElementById('searchInput').addEventListener('input', search);
+        document.getElementById('searchInput').addEventListener('keydown', function(event) {
+            if(event.key === 'Enter') {
+                search();
+            }
+        });
+        function search() {
+            const searchInput = document.getElementById('searchInput');
+            const searchValue = searchInput.value;
+            console.log(searchValue);
+        }
+        document.getElementById('searchInput').addEventListener('input', search);
+        document.getElementById('searchInput').addEventListener('keydown', function(event) {
+            if(event.key === 'Enter') {
+                search();
+            }
+        });
+        function search() {
+            const searchInput = document.getElementById('searchInput');
+            const searchValue = searchInput.value;
+            console.log(searchValue);
+        }
+        document.getElementById('searchInput').addEventListener('input', search);
+        document.getElementById('searchInput').addEventListener('keydown', function(event) {
+            if(event.key === 'Enter') {
+                search();
+            }
+        });
+        function search() {
+            const searchInput = document.getElementById('searchInput');
+            const searchValue = searchInput.value;
+            console.log(searchValue);
+        }
+        document.getElementById('searchInput').addEventListener('input', search);
+        document.getElementById('searchInput').addEventListener('keydown', function(event) {
+            if(event.key === 'Enter') {
+                search();
+            }
+        });
+        function search() {
+            const searchInput = document.getElementById('searchInput');
+            const searchValue = searchInput.value;
+            console.log(searchValue);
+        }
+        document.getElementById('searchInput').addEventListener('input', search);
+        document.getElementById('searchInput').addEventListener('keydown', function(event) {
+            if(event.key === 'Enter') {
+                search();
+            }
+        });
+    </script>
+</body>
+</html>

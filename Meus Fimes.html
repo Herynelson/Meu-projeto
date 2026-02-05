@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Filmes Favoritos</title>
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQu9LbPrwzq3XSjDvaYYT5ujIchndVllGjlJw&s">
+    <style>
+       
+        body, html {
+            margin: 0;
+            font: 16px "Lato", sans-serif;
+            color: #777;
+            height: 100%;
+        }
+    
+        .conteudo {
+            color: #777;
+            background-color: white;
+            text-align: justify;
+            padding: 50px 80px;
+        }
+    
+        h3 {
+            text-transform: uppercase;
+            color: #111;
+            text-align: center;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+    
+        .caixa1,.caixa2,.caixa3,.caixa4,.caixa5, .caixa6, .caixa7,.caixa8, .caixa9, .caixa10,.caixa11, .caixa12, .caixa13, .caixa14
+        , .caixa15, .caixa16, .caixa17, .caixa18, .caixa19, .caixa20, .caixa21, .caixa22, .caixa23, .caixa24, .caixa25,
+        .caixa26, .caixa27, .caixa28, .caixa29, .caixa30 {
+              height: 100%;
+              opacity: 0.7;
+              background-repeat: no-repeat;
+              background-size: cover;
+              background-position: center;
+              background-attachment: fixed;
+              position: relative;
+        }
+    
+        .caixa1 {
+            background-image: url("https://cdn.wallpapersafari.com/22/13/5TCzIa.jpg");
+        }
+
+        .caixa2 {
+            background-image: url("https://lusobritish.blog/wp-content/uploads/2023/02/l3erva6jwcd0qo4ndx.gif");
+        }
+
+        .caixa3 {
+            background-image: url("https://64.media.tumblr.com/5719b1cf39a57c13d1455ce5fcc8394e/3b8a4e57d8c64f73-31/s540x810/8713a2fe4f09c4ccfc5a863929f36120a126f0da.gif");
+        }
+
+        .caixa4 {
+            background-image: url("https://images.virgula.me/2016/09/radioraheem.gif");
+        }
+
+        .caixa5 {
+            background-image: url("https://pa1.aminoapps.com/6214/41ce08c8d7f33c666ea6ad55c314283d09eb0148_hq.gif");
+        }
+
+        .caixa6 {
+            background-image: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjNuQ8CW0EtfyHdxftnHZn7_3XVBMR5QIoPbyrO_6SQJZ6ssL869LRfIdFphCXt9GSbeGiVWT8FUe-GHMxMP6p2uUYkJ-V1b0Jw-0FUQPFouXYUhh0c0BmpezT40ZOP5-c92RZ475c-tCuM/s1600/tumblr_n0pu9dKpRq1t77ydgo1_500.gif");
+        }
+
+        .caixa7 {
+            background-image: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgXW42uHQe76yftVVvoSAGaqK2D4L8NXt4gZYz6PAGfBvpweB_PrpL3cvttficWmHg86hgk37kZhcTQ1884judEtfAQhCub7B0-k73ZKvxlgTaHucFg5yFU4IKGKTz189e6j9VmTTdbcCU/s400/hugjumpfrodogandalf.gif");
+        }
+
+        .caixa8 {
+            background-image: url("https://www.curtamais.com.br/uploads/midias/a7791283dcdb17299c1cab34ef4f1e5a.gif");
+        }
+
+        .caixa9 {
+            background-image: url("https://c.tenor.com/-ZBiM4bz0AwAAAAC/tenor.gif");
+        }
+
+        .caixa10 {
+            background-image: url("https://i.pinimg.com/originals/56/45/07/564507d56a82295df20f2061f1913103.gif");
+        }
+
+        .caixa11 {
+            background-image: url("https://www.curtamais.com.br/uploads/midias/296003f0bb071eaddb47586943c2f5e3.gif");
+        }
+
+        .caixa12 {
+            background-image: url("https://oimparcial.com.br/media/2017/10/740full-the-godfather-.gif");
+        }
+
+        .caixa13 {
+            background-image: url("https://24.media.tumblr.com/26650b6fb5ffbdd316a0886d73af6875/tumblr_milckmJF2s1s33hwjo1_500.gif");
+        }
+
+        .caixa14 {
+            background-image: url("https://jcvasc.files.wordpress.com/2008/09/palmas-curinga.gif");
+        }
+
+        .caixa15 {
+            background-image: url("https://media.tenor.com/rC7sb56DSvAAAAAC/larsandtherealgirl-trailer.gif");
+        }
+
+        .caixa16 {
+            background-image: url("https://miro.medium.com/v2/resize:fit:1000/0*gZBWpWgphvzBqLEF.gif");
+        }
+
+        .caixa17 {
+            background-image: url("https://avidaemcena.com/wp-content/uploads/2023/04/viajando-no-tempo-De-volta-p-o-futuro.gif");
+        }
+
+        .caixa18 {
+            background-image: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgtkOEOhQo7nzDeQRayORWGcIlsmPRxv4p-FAH8H-DZmHg6y9UVFDutReCSIBLoqMk1Lzs4kPBDvgdChyTUCFKO5azFc0Y0AMHJyho4-L_qAp17iwvmrHn5W6-fNbV5O6zCno1U2O7ojB4/s1600/tars.gif");
+        }
+
+        .caixa19 {
+            background-image: url("https://minilua.net/wp-content/uploads/2016/05/plonge1.gif");
+        }
+
+        .caixa20 {
+            background-image: url("https://i.pinimg.com/originals/43/ea/98/43ea984a0394567d89143acea055a2f9.gif");
+        }
+
+        .caixa21 {
+            background-image: url("https://i.pinimg.com/originals/4c/d3/61/4cd361e29b6fcc0d771bde2107287088.gif");
+        }
+
+        .caixa22 {
+            background-image: url("https://super.abril.com.br/wp-content/uploads/2016/09/super_imga_rede_social.gif");
+        }
+
+        .caixa23 {
+            background-image: url("https://images.steamusercontent.com/ugc/921426876990312913/BAF2ACE7D450567D199BA28A386BDA946D7D674F/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false");
+        }
+
+        .caixa24 {
+            background-image: url("https://i.pinimg.com/originals/d6/20/e6/d620e6b29914108a2a4580ee91d45392.gif");
+        }
+
+        .caixa25 {
+            background-image: url("https://64.media.tumblr.com/43f3182cae3cb7c2599d7b140d89f95c/87e5d3815c4823a6-45/s500x750/08f4e7db18098baa9651eed0d2e1a0e1c984da55.gif");
+        }
+
+        .caixa26 {
+            background-image: url("https://media.giphy.com/media/7GcaQvVqHau6Q/giphy.gif");
+        }
+
+        .caixa27 {
+            background-image: url("https://giffiles.alphacoders.com/114/114351.gif");
+        }
+
+        .caixa28 {
+            background-image: url("https://c.tenor.com/CMGqnUWJboIAAAAC/taxi-driver.gif");
+        }
+
+        .caixa29 {
+            background-image: url("https://64.media.tumblr.com/9121e349bbd12241398e87aa17045143/tumblr_pb54nvfQ9V1w67ki0o1_r2_500.gifv");
+        }
+
+        .caixa30 {
+            background-image: url("https://retrosisses.wordpress.com/wp-content/uploads/2014/05/tumblr_mpdvh8yina1so7kaio1_500.gif?w=650&h=355");
+        }
+
+
+
+
+        .conteudo-titulo {
+            position: absolute;
+            left: 0;
+            top: 45%;
+            width: 100%;
+            text-align: center;           
+        }
+
+        .conteudo-titulo span.titulo {
+            background-color: #111;
+            padding: 18px;
+            font-size: 25px;
+            letter-spacing: 5px;
+            color: #fff;
+        }
+
+        footer {
+            background-color: #1f1f1f;
+            color: white;
+            padding: 30px 20px 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+
+        /* Melhorando a legibilidade do texto */
+.conteudo-titulo span.titulo {
+    background-color: rgba(17, 17, 17, 0.8); /* Um pouco de transparência */
+    padding: 18px;
+    font-size: 1.5rem; /* Usar rem em vez de px para escalar melhor */
+    display: inline-block;
+    max-width: 90%;    /* Para não vazar da tela no mobile */
+}
+
+/* Ajuste para telas pequenas */
+@media (max-width: 600px) {
+    .caixa1, .caixa2, ... {
+        background-attachment: scroll; /* Desliga o parallax no mobile para performance */
+        min-height: 300px; /* Garante altura mínima */
+    }
+    
+    .conteudo-titulo {
+        top: 50%;
+        transform: translateY(-50%); /* Centraliza perfeitamente na vertical */
+    }
+}
+    
+    
+    
+    </style>
+</head>
+<body>
+    <div class="caixa1">
+        <div class="conteudo-titulo">
+            <span class="titulo">CINEMA</span>
+        </div>
+    </div>
+    <div class="conteudo">
+        <h3>Meus 30 filmes Favoritos</h3>
+        <p>Aqui estão meus 30 filmes favoritos:</p>
+    </div>
+    </div>
+    <div class="caixa2">
+        <div class="conteudo-titulo">
+            <span class="titulo">Era uma Vez em... Hollywood</span>           
+        </div>
+        </div>
+    
+    <div class="caixa3">
+        <div class="conteudo-titulo">
+            <span class="titulo">X-Men 2</span>
+        </div>
+    </div>
+        
+    <div class="caixa4">
+        <div class="conteudo-titulo">
+            <span class="titulo">Faça a Coisa Certa</span>
+        </div>
+    </div>
+        
+    <div class="caixa5">
+        <div class="conteudo-titulo">
+            <span class="titulo">O Castelo Animado</span>
+        </div>
+    </div>
+        
+    <div class="caixa6">
+        <div class="conteudo-titulo">
+            <span class="titulo">Harry Potter e o Prisioneiro de Azkaban</span>
+        </div>
+    </div>
+        
+    <div class="caixa7">
+        <div class="conteudo-titulo">
+            <span class="titulo">O Senhor dos Anéis: O Retorno do Rei</span>
+        </div>
+    </div>
+        
+    <div class="caixa8">
+        <div class="conteudo-titulo">
+            <span class="titulo">Django Livre</span>
+        </div>
+    </div>
+        
+    <div class="caixa9">
+        <div class="conteudo-titulo">
+            <span class="titulo">Superman</span>
+        </div>
+    </div>
+        
+    <div class="caixa10">
+        <div class="conteudo-titulo">
+            <span class="titulo">Edward Mãos de tesoura</span>
+        </div>
+    </div>
+        
+    <div class="caixa11">
+        <div class="conteudo-titulo">
+            <span class="titulo">Curtindo a Vida Adoidado</span>
+        </div>
+    </div>
+
+    <div class="caixa12">
+        <div class="conteudo-titulo">
+            <span class="titulo">O Poderoso Chefão</span>
+        </div>
+    </div>
+
+    <div class="caixa13">
+        <div class="conteudo-titulo">
+            <span class="titulo">Cidade de Deus</span>
+        </div>
+    </div>
+
+    <div class="caixa14">
+        <div class="conteudo-titulo">
+            <span class="titulo">Batman - O Cavaleiro das Trevas</span>
+        </div>
+    </div>
+
+    <div class="caixa15">
+        <div class="conteudo-titulo">
+            <span class="titulo">A Garota Ideal</span>
+        </div>
+    </div>
+
+    <div class="caixa16">
+        <div class="conteudo-titulo">
+            <span class="titulo">A Princesa Mononoke</span>
+        </div>
+    </div>
+
+    <div class="caixa17">
+        <div class="conteudo-titulo">
+            <span class="titulo">De Volta Para o Futuro</span>
+        </div>
+    </div>
+
+    <div class="caixa18">
+        <div class="conteudo-titulo">
+            <span class="titulo">Interestelar</span>
+        </div>
+    </div>
+
+    <div class="caixa19">
+        <div class="conteudo-titulo">
+            <span class="titulo">Bastardos inglórios</span>
+        </div>
+    </div>
+
+    <div class="caixa20">
+        <div class="conteudo-titulo">
+            <span class="titulo">Star Wars V - O Império Contra-Ataca</span>
+        </div>
+    </div>
+
+    <div class="caixa21">
+        <div class="conteudo-titulo">
+            <span class="titulo">Homem-Aranha 2</span>
+        </div>
+    </div>
+
+    <div class="caixa22">
+        <div class="conteudo-titulo">
+            <span class="titulo">A Rede Social</span>
+        </div>
+    </div>
+
+    <div class="caixa23">
+        <div class="conteudo-titulo">
+            <span class="titulo">A Origem</span>
+        </div>
+    </div>
+
+    <div class="caixa24">
+        <div class="conteudo-titulo">
+            <span class="titulo">Laranja Mecânica</span>
+        </div>
+    </div>
+
+    <div class="caixa25">
+        <div class="conteudo-titulo">
+            <span class="titulo">Pecadores</span>
+        </div>
+    </div>
+
+    <div class="caixa26">
+        <div class="conteudo-titulo">
+            <span class="titulo">Corra!</span>
+        </div>
+    </div>
+
+    <div class="caixa27">
+        <div class="conteudo-titulo">
+            <span class="titulo">Kill Bill</span>
+        </div>
+    </div>
+
+    <div class="caixa28">
+        <div class="conteudo-titulo">
+            <span class="titulo">Táxi Driver</span>
+        </div>
+    </div>
+
+    <div class="caixa29">
+        <div class="conteudo-titulo">
+            <span class="titulo">Questão de Tempo</span>
+        </div>
+    </div>
+
+    <div class="caixa30">
+        <div class="conteudo-titulo">
+            <span class="titulo">Sociedade dos Poetas Mortos</span>
+        </div>
+    </div>
+
+
+
+    <footer>
+        <p> &copy; Todos os direitos reservados - 2025</p>
+    </footer>
+    
+    
+</body>
+</html>

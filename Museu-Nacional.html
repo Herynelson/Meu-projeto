@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Museu Nacional</title>
+	<style type="text/css">
+	
+	body{
+		background: #f4f2ec url(Imagens/fundo-museu.png) repeat-x;
+		font: 12px "Lucida Grande", "Lucida sans Unicode", Arial, sans-serif; 
+	}
+
+	#container{
+		width: 1080px;
+		margin: 0 auto;
+	}
+
+	#logo{
+		float: left;
+	}
+
+	#logo a{
+              width: 248px;
+              height: 21px;
+              text-indent: -9999px;
+              display: block;
+              background: url(Imagens/logo-museu.png) no-repeat;
+	}
+
+       header{
+       	padding: 15px 0;
+       	height: 55px;
+       }
+
+       nav ul{
+       	list-style: none;
+       	margin: 20px;
+       	float: right;
+       }
+
+       nav ul li{
+       	float: left;
+       }
+
+       a:Link, a:active, a:visited{
+       	color: #af670a;
+       	text-decoration: none;
+       }
+
+       a:hover{
+       	color: #227115;
+       }
+
+       nav ul li a:link{
+       	display: block;
+       	margin-right: 25px;
+       	padding-bottom: 3px;
+       	text-transform: uppercase;
+       }
+	
+	nav ul li a:hover{
+              border-bottom: 1px solid #535858;
+	}
+
+	#conteudo{
+		width: 710px;
+		float: left;
+		margin-bottom: 20px;
+	}
+
+	aside{
+		width: 350px;
+		float: right;
+		background: #ebe7dd;
+		padding-bottom: 30px;
+		margin-bottom: 20px;
+	}
+
+	section#visita{
+              background: #cdc8b1;
+              padding: 10px 27px 27px 27px;
+              margin-top: 10px;
+	}
+
+	h4{
+		color: #86521a;
+		text-transform: uppercase;
+		padding-bottom: 3px;
+		margin-bottom: 0;
+	}
+
+	input{
+		height: 20px;
+		width: 80px;
+		background: #fff;
+		border: none;
+		font-size: 1em;
+	}
+
+	input.campo{
+		border: 1px solid #ada484;
+	}
+
+	input.botao{
+		background: #9b9271;
+		color: white;
+		width: 100%;
+		height: 40px;
+		font-size: 1.2em;
+	}
+
+	fieldset{
+		border: none;		
+	}
+
+	legend{
+		display: none;
+	}
+
+	section#galeria a{
+		display: block;
+		background: url(Imagens/fundo-foto.png) no-repeat;
+		float: left;
+		padding: 17px 15px 17px 15px;
+              margin: 10px 0 0 20px;
+	}
+
+	section#galeria img{
+		margin-left: 2px;
+		margin-top: 3px;
+	}
+
+	section#galeria{
+		padding: 0 27px 0 27px;
+
+	}
+
+	h3{
+		color: #227115;
+		font-size: 1.0em;
+		margin-bottom: 15px;
+		text-transform: uppercase;
+	}
+
+	article#video{
+		float: left;
+		width: 310px;
+		margin-left: 25px;
+	}
+
+	article#mapa{
+		float: left;
+		width: 310px;
+		margin-left: 37px;
+	}
+
+	article#exposicoes{
+		float: left;
+		width: 310px;
+		margin: 15px 0 0 25px;
+	}
+
+	article#historia{
+		float: left;
+		width: 310px;
+		margin: 15px 0 0 37px;
+	}
+
+	footer{
+		padding: 20px 0 30px 0;
+		text-align: center;
+		background: url(Imagens/fundo-rodape.png) no-repeat center top;
+		margin-top: 20px;
+		clear: both;
+	}
+
+	footer>p a{
+		padding: 2px 10px;
+	}
+
+	/* Efeito suave nos links */
+a {
+    transition: all 0.3s ease; /* Suaviza a mudança de cor */
+    position: relative;
+}
+
+/* Efeito de sublinhado animado */
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #227115;
+    transition: width 0.3s;
+}
+
+nav ul li a:hover::after {
+    width: 100%; /* A linha cresce da esquerda para a direita */
+}
+
+/* Efeito nas Imagens de Galeria */
+section#galeria img {
+    transition: transform 0.3s;
+}
+
+section#galeria img:hover {
+    transform: scale(1.1); /* Aumenta levemente a imagem ao passar o mouse */
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+
+#container {
+    width: 100%;           /* Ocupa a largura disponível */
+    max-width: 1080px;     /* Mas para de crescer em telas gigantes */
+    margin: 0 auto;
+    padding: 0 2%;         /* Um respiro nas laterais em telas pequenas */
+    box-sizing: border-box; /* Garante que o padding não estoure a largura */
+}
+
+/* Tornando as imagens fluidas globalmente */
+img {
+    max-width: 100%;
+    height: auto;          /* Mantém a proporção */
+}
+
+	</style>
+
+</head>
+
+<body>
+     <div id="container">
+     	<div id="cabecalho">
+     		<header>
+     			<div id="logo">
+     				<h1>
+     					<a href="">Museu Nacional</a>
+     				</h1>
+     			</div>
+     		<nav>
+     			<ul>
+     				<li><a href="#">Inicío</a></li>     				
+     				<li><a href="#">Exposições</a></li>
+     				<li><a href="#">Pesquisa</a></li>
+     				<li><a href="#">Acervos</a></li>
+     				<li><a href="#">Videos</a></li>
+     				<li><a href="#">Fotos</a></li>
+     				<li><a href="#">Contato</a></li>
+     			</ul>
+     		</nav>
+     		</header>
+
+     		<div id="principal">
+     			<div id="conteudo">
+     				<section id="capa">
+     					<img src="Imagens/museu.png">
+     				</section>
+     				<section id="postagens">
+     				    <article id="video">
+     				    	<h3>Video: Conheça o Museu</h3>
+     				    	<iframe width="310" height="170" src="https://www.youtube.com/embed/RGUYb-hivrc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+     				    	</article>
+     				    	<article id="mapa">
+     				    		<h3>Mapa: Encontre o Museu</h3>
+     				    		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.2064457500765!2d-43.229103825321616!3d-22.905755037832947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x997e58a085b7af%3A0x4d11e9a933d38ce3!2sMuseu%20Nacional%20-%20UFRJ!5e0!3m2!1spt-BR!2sbr!4v1685123802089!5m2!1spt-BR!2sbr" width="310" height="170" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+     				    	</article>
+     				    	<article id="exposicoes">
+     				    		<h3>Exposições</h3>
+     				    		<ul>
+     				    			<li><a href="#">Os assustadores insetos</a></li>
+     				    			<li><a href="#">O crânio de Luzia, a mulher mais antiga do Brasil</a></li>
+     				    			<li><a href="#">Mamute e Preguiça gigante</a></li>
+     				    			<li><a href="#">A Praga do século: Margaridas</a></li>
+     				    			<li><a href="#">Gatos-Piranhas</a></li>
+     				    			<li><a href="#">Plantas do Brasil Central</a></li>
+     				    			<li><a href="#">Artes com dinossauros- Paleoarte</a></li>
+     				    			<li><a href="#">Teresa Cristina, a Imperatriz arqueóloga</a></li>
+     				    			<li><a href="#"><strong>Veja Todos (69)</strong></a></li>
+     				    		</ul>
+     				    	</article>
+     				    	<article id="historia">
+     				    		<h3>200 anos de histórias</h3>
+     				    		<p>
+     				    			Criado por D. João VI, em 06 de junho de 1818 e inicialmente, sediado no Campo de Sant'Ana, serviu para atender aos interesses de promoção do progresso cultural e econômico do país.
+     				    		</p>
+     				    		<img src="https://www.museunacional.ufrj.br/MUSEU2016/img/omuseu/24.jpg" width="310" height="170">
+     				    		<p>
+     				    			Como museu universitário, tem perfil acadêmico e científico. Suas exposições resultam da história da instituição e da excelência de suas atividades de pesquisa e ensino, cumprindo a finalidade precípua de produção e disseminação do conhecimento nas áreas de ciências naturais e antropológicas.
+     				    		</p>
+     				    		<a href=""><strong>Leia Mais</strong></a>
+     				    	</article>
+     				</section>
+     			</div>
+     			<aside>
+     				<section id="depoimento">
+     				     <img src="Imagens/depoimento-museu.png">
+     				</section>
+     				<section id="visita">
+     				<h4>Faça uma Visita</h4>
+     				<form>
+     					<fieldset>
+     					<legend>Selecione uma data</legend>
+     					<label for="data">Data</label>	
+     					<input class="campo" type="text" id="data" value="dd/mm/aaaa">
+
+     					<label for="qtd">Qtd de Pessoas</label>	
+     					<input class="campo" style="width:30px" type="text" id="qtd" value="1">
+     					</fieldset>
+     					<input class="botao" type="submit" value="Verificar disponibilidade">
+     				</form>
+     				</section>
+     			<section id="galeria">
+     				<h1>Galeria de foto</h1>
+     				<a href="#">
+     					<img src="Imagens/imagem01.jpg" height="93" width="93">
+     				</a>
+     				<a href="#">
+     					<img src="Imagens/imagem02.jpg" height="93" width="93">
+     				</a>
+     				<a href="#">
+     					<img src="Imagens/imagem03.jpg" height="93" width="93">
+     				</a>
+     				<a href="#">
+     					<img src="Imagens/imagem04.jpg" height="93" width="93">
+     				</a>
+     			</section>	
+     			</aside>
+     			<footer>
+     				<p>
+     					<a href="">Início</a>
+     					<a href="">Exposições</a> 
+     					<a href="">Pesquisa</a>
+     					<a href="">Acervo</a>
+     					<a href="">Vídeos</a>
+     					<a href="">Fotos</a>
+     					<a href="">Contato</a>                          
+     				</p>
+     				<p>
+     					2023 <a href="">Museu Nacional</a> - Todos os direitos reservados.
+     				</p>
+     			</footer>
+     		</div>
+     		
+     	</div>
+  
+    
+</body>
+</html>

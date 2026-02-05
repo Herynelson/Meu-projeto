@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>testador</title>
+    <style>
+       /* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f9;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    max-width: 800px;
+    width: 100%;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #555;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: 0.2s ease-in-out;
+}
+
+input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.col-md-2 { flex: 0 0 20%; min-width: 120px; }
+.col-md-3 { flex: 0 0 30%; min-width: 150px; }
+.col-md-4 { flex: 0 0 40%; min-width: 200px; }
+
+button.btn {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
+}
+
+button.btn:hover {
+    background-color: #0056b3;
+}
+
+    </style>
+</head>
+<body>
+	<!-- Adicione ao <body> -->
+<form id="formulario">
+    <div class="container">
+        <h1>Cadastro de Endereço</h1>
+
+        <div class="form-group col-md-2">
+            <label for="cep">CEP</label>
+            <input type="text" id="cep" maxlength="8" required>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="rua">Rua</label>
+                <input type="text" id="rua" placeholder="Rua dos Bobos">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="numero">N.º</label>
+                <input type="text" id="numero" placeholder="nº 0">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="bairro">Bairro</label>
+                <input type="text" id="bairro" placeholder="Bairro">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label for="complemento">Complemento</label>
+                <input type="text" id="complemento">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="cidade">Cidade</label>
+                <input type="text" id="cidade">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="estado">Estado</label>
+                <input type="text" id="estado">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </div>
+</form>
+
+<script>
+'use strict';
+
+    const limparFormulario = (endereco) => {
+        document.getElementById('rua').value = '';
+        document.getElementById('bairro').value = '';
+        document.getElementById('cidade').value = '';
+        document.getElementById('estado').value = '';
+    }
+    const preencherFormulario = (endereco) => {
+        document.getElementById('rua').value = endereco.logradouro;
+        document.getElementById('bairro').value = endereco.bairro;
+        document.getElementById('cidade').value = endereco.localidade;
+        document.getElementById('estado').value = endereco.uf;
+    }
+
+    const eNumero = (numero) => /^[0-9]+$/.test(numero);
+
+    const cepValido = (cep) => cep.length == 8 && eNumero(cep);
+
+    const pesquisarCep = async() => {
+        limparFormulario();
+        const url = 'viacep.com.br/ws/01001000/json/?callback=callback_name';
+
+        if(cepValido(cep.value)) {
+            const dados = await fetch(url);
+            const addres = await dados.json();
+
+            if(addres.hasOwnProperty('erro')){
+                alert('CEP não encontrado!');
+            }else {
+                preencherFormulario(addres);
+            }
+        }else {
+            alert('CEP incorreto!');
+        }
+    }
+    
+    document.getElementById('cep').addEventListener('focusout', pesquisarCep);
+
+</script>
+
+</body>
+</html>

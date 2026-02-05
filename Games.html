@@ -108,6 +108,28 @@
             font-family: Arial, Helvetica, sans-serif;
             text-align: center;
         }
+
+        /* Melhorando a legibilidade do texto */
+.conteudo-titulo span.titulo {
+    background-color: rgba(17, 17, 17, 0.8); /* Um pouco de transparência */
+    padding: 18px;
+    font-size: 1.5rem; /* Usar rem em vez de px para escalar melhor */
+    display: inline-block;
+    max-width: 90%;    /* Para não vazar da tela no mobile */
+}
+
+/* Ajuste para telas pequenas */
+@media (max-width: 600px) {
+    .caixa1, .caixa2, ... {
+        background-attachment: scroll; /* Desliga o parallax no mobile para performance */
+        min-height: 300px; /* Garante altura mínima */
+    }
+    
+    .conteudo-titulo {
+        top: 50%;
+        transform: translateY(-50%); /* Centraliza perfeitamente na vertical */
+    }
+}
     
     
     

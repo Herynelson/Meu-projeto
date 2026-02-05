@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gênero e Idade Bruxo</title>
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuPBJ1qPDxDp95liApw3UbKnJ6OBOi8TLbWA&s">
+    <style>
+        body {
+            background-image: url("https://wallpapercat.com/w/full/d/a/0/2164097-1920x1124-desktop-hd-hogwarts-castle-wallpaper-image.jpg");
+            font: normal 15pt Arial;
+        }
+
+        header {
+            color: white;
+            text-align: center;
+        }
+
+        section {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            width: 500px;
+            margin: auto;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.404);
+        }
+
+        footer {
+            color: white;
+            text-align: center;
+            font-style: italic;
+        }
+
+        img {
+            border-radius: 120px;
+            height: 250px;
+            width: 250px;
+        }
+
+        section {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    
+    /* MUDANÇA AQUI */
+    width: 90%;            /* Ocupa 90% da tela do celular */
+    max-width: 500px;      /* Mas trava em 500px no computador */
+    margin: 20px auto;     /* Espaçamento vertical melhor */
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.404);
+}
+
+/* Melhoria na imagem gerada pelo JS */
+#res img {
+    margin-top: 15px;
+    width: 150px;          /* Reduzi um pouco para caber melhor em telas pequenas */
+    height: 150px;
+    object-fit: cover;     /* Garante que a foto não fique esticada */
+}
+
+    </style>
+</head>
+<body>  
+    <header>
+        <h1>Verificador de Idade</h1>
+    </header>
+    <section>
+        <div>
+            <p>Ano de Nascimento:
+                <input type="number" name="txtano" id="txtano" min="0">
+            </p>
+            <p>Sexo:
+                <input type="radio" name="radsex" id="masc" checked>
+                <label for="masc">Bruxo</label>
+                <input type="radio" name="radsex" id="fem">
+                <label for="fem">Bruxa</label>
+            </p>
+            <p>
+                <input type="button" value="verificar" onclick="verificar()">
+            </p>
+        </div>
+        <div id="res">
+            Preencha os dados acima!        
+        </div>
+    </section>
+    <footer>
+        <p>&copy; Grungefox</p>
+    </footer>
+    <script> 
+        alert('Seja bem-vindo mero "TROUXA!"') 
+        function verificar() {         
+            var data = new Date()
+            var ano = data.getFullYear()
+            var fano = document.getElementById('txtano')
+            var res = document.querySelector('div#res')
+            if (fano.value.length == 0 || Number(fano.value) > ano) {
+                window.alert('[ERRO] Verifique os dados e tente novamente!')
+            } else {
+                var fsex = document.getElementsByName('radsex')
+                var idade = ano - Number(fano.value)
+                var genero = ''
+                var img = document.createElement('img')
+                img.setAttribute('id', 'foto')
+                if (fsex[0].checked) {
+                    genero = 'Bruxo'
+                    if (idade >=0 && idade < 5) {
+                        img.setAttribute('src', 'https://i.pinimg.com/474x/20/74/59/207459627e52792e3a19ea37d58c7bb2.jpg')
+                   } else if (idade >=5 && idade < 14) {
+                        img.setAttribute('src', 'https://imgix.bustle.com/rehost/2016/9/13/556a0b44-17b5-429c-8954-2dc926bfbc70.jpg?w=1200&h=1200&fit=crop&crop=faces&fm=jpg')
+                   }else if (idade >=14 && idade <24) {
+                        img.setAttribute('src', 'https://www.popsugar.com.au/wp-content/uploads/sites/2/2021/06/3b1682535f7610b60d1856.97743389_.jpg')
+                    } else if (idade >= 25 && idade < 37){
+                        img.setAttribute('src', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBNUeDF7RqALv4h8TScBN9hjUr2yLWFvga3g&usqp=CAU')
+                   }
+                   else if (idade >=38 && idade < 59) {
+                        img.setAttribute('src', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRgn0tEGpXtv8jUx7qMiF6otVgbwXyWQrbow&usqp=CAU')
+                   } else {
+                        img.setAttribute('src', 'https://i.pinimg.com/736x/cd/55/b4/cd55b4c86bf271ac2a7f1e4b28161651.jpg')
+                   }
+                } else if (fsex[1].checked) {
+                    genero = 'Bruxa'
+                    if (idade >=0 && idade < 7) {
+                        img.setAttribute('src', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBrjXlTIanu2jwbi8SwHWpY43uNP_TEfFn7DZL8LcMHzmaWw16HARTE3dElZcFBen8tjM&usqp=CAU')
+                   } else if (idade >= 7 && idade < 22) {
+                       img.setAttribute('src', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSACzq3438sjx0-NAC3UbiWQZ_h_acMkjuqA&usqp=CAU')
+                   } else if (idade >= 22 && idade < 39) {
+                       img.setAttribute('src', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnjHnKv7DJiOqodVLoXrMtTnfNEUsvlEHcnQ&usqp=CAU')
+                   } else if (idade >= 39 && idade < 59) {
+                      img.setAttribute('src', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzS6tyzs8q3SUNaCC3ermwMI7AucS5nDJQuw&usqp=CAU')
+                   } else {
+                       img.setAttribute('src', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMJFJKRYjY5fIO4vEf3ZVa_H8sRrcBWNvGyg&s')
+                   }
+                }
+                res.style.textAlign = 'center'
+                res.innerHTML =`Detectamos ${genero} com ${idade} anos.`
+                res.appendChild(img)
+            }
+        }
+    </script>
+</body>
+</html>

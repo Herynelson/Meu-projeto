@@ -6,175 +6,263 @@
     <title>Página de tributo: Arctic Monkeys</title>
     <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdPkgdATAfRfZ84jLRwhbWAz9xR1qxByOW6CHQExM7EEDt-ScqP3HdzOzOYCplGY42fd0&usqp=CAU">
     <style>
+        /* Reset básico para garantir consistência */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         html {
-            font-family: Helvetica;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             background-color: black;
             background-image: url("https://i.pinimg.com/564x/81/1a/cf/811acf464ee9a406a2bb6382985b95ec.jpg");
+            background-size: cover;
+            background-attachment: fixed; /* O fundo fica parado ao rolar */
+            background-position: center;
+        }
+
+        body {
+            line-height: 1.6; /* Melhora a leitura do texto */
         }
 
         .container {
             max-width: 1100px;
-            background-color: white;
-            position: relative;
+            background-color: rgba(255, 255, 255, 0.95); /* Leve transparência */
+            width: 90%; /* Ocupa 90% da tela em dispositivos menores */
             margin: 50px auto;
-            padding: 20px 50px;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5); /* Sombra elegante */
+            border-radius: 8px;
         }
 
-        .bold {
-            font-weight: bold;
+        /* Tipografia e Utilitários */
+        .bold { font-weight: bold; }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid black;
+            display: inline-block;
         }
 
-        .header {
-            text-align: center;
+        h3 { margin-bottom: 15px; }
+
+        p { margin-bottom: 15px; font-size: 1.1rem; }
+
+        /* Imagens Responsivas */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 4px;
+            transition: transform 0.3s ease; /* Animação suave */
         }
 
-        .main-title {
-            font-size: 40px;
+        /* Efeito de zoom nas imagens ao passar o mouse */
+        .featured-image img:hover, .img-gallery img:hover {
+            transform: scale(1.02);
+            cursor: pointer;
         }
 
-        .main-paragraph {
+        .header { text-align: center; margin-bottom: 30px; }
+        .featured-image { text-align: center; margin-bottom: 40px; }
+        
+        figcaption {
             font-style: italic;
-        }
-
-        .featured-image {
+            color: #555;
+            margin-top: 8px;
+            font-size: 0.9rem;
             text-align: center;
-            margin-top: 30px;
         }
 
-        .biography-container {
-            padding: 25px 0;
-            margin: 25px 0;  
+        /* Seções */
+        .biography-container, .curiosities-container {
+            margin: 40px 0;
         }
 
+        /* Citações */
         .quotes-container {
-            background-color: black;
+            background-color: #111;
             color: white;
-            padding: 30px;
+            padding: 40px;
+            border-left: 10px solid #555;
+            margin: 40px 0;
+            border-radius: 4px;
         }
 
         .quotes-container blockquote {
             font-weight: bold;
-            font-size: 30px;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
         }
 
-        .quotes-container p {
+        .quotes-container p.author {
             font-style: italic;
+            text-align: right;
+            color: #ccc;
         }
 
-        .curiosities-container {
-            padding: 25px 0;
-            margin: 25px 0;
-            
+        /* Lista de Curiosidades */
+        .curiosities-container ul {
+            list-style-position: inside;
+            padding-left: 10px;
         }
 
         .curiosities-container li {
-            height: 30px;
+            margin-bottom: 12px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        .img-bold {
-            font-weight: bold;
-            text-align: center;
-        }
-
-        footer {
-            background-color:;
-            height: 20px;
-            max-width: 1100px;
-            position: relative;
-            margin: 50px auto;
-            padding: 20px 50px;
+        .curiosities-container li:hover {
+            background-color: black;
             color: white;
         }
 
+        /* Galeria e Vídeo na parte inferior */
+        .img-gallery figure {
+            margin-bottom: 40px; /* Substitui os <br> */
+        }
+
+        /* Técnica para vídeo responsivo (YouTube) */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* Proporção 16:9 */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #111;
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto 50px auto;
+            padding: 20px;
+            color: white;
+            text-align: center;
+            border-radius: 0 0 8px 8px; /* Arredonda só em baixo */
+        }
+
         footer p {
-            text-align: center;
-            font-style: italic;
-            font: normal 15pt Fantasy ;
+            margin: 0;
+            font-size: 1rem;
         }
 
-        .header img {
-            text-align: center;
+        /* Media Queries: Ajustes para telas pequenas (Celulares) */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 20px;
+                margin: 20px auto;
+            }
+
+            .main-title { font-size: 28px; }
+            
+            .quotes-container {
+                padding: 20px;
+            }
+            
+            .quotes-container blockquote {
+                font-size: 1.2rem;
+            }
+
+            h2 { font-size: 1.5rem; }
         }
-
-
-</style>
+    </style>
 </head>
 
 <body>
     <div class="container">
         <div class="header">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdPkgdATAfRfZ84jLRwhbWAz9xR1qxByOW6CHQExM7EEDt-ScqP3HdzOzOYCplGY42fd0&usqp=CAU" alt="logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdPkgdATAfRfZ84jLRwhbWAz9xR1qxByOW6CHQExM7EEDt-ScqP3HdzOzOYCplGY42fd0&usqp=CAU" alt="logo Arctic Monkeys" style="width: 150px;">
         </div>
         
         <div class="featured-image">
             <figure>
-                <img src="https://classic.exame.com/wp-content/uploads/2018/05/arctir.jpg?quality=70&strip=info&w=680" alt="banda arctic monkeys">
+                <img src="https://classic.exame.com/wp-content/uploads/2018/05/arctir.jpg?quality=70&strip=info&w=680" alt="Banda Arctic Monkeys reunida">
                 <figcaption>Integrantes da banda</figcaption>
             </figure>
         </div>
         
         <div class="biography-container">
-            <h2>Os Primórdios dos "macacos do ártico"</h2>
+            <h2>Os Primórdios dos "Macacos do Ártico"</h2>
             <p>
                 Após ganharem suas guitarras no natal de 2001, os vizinhos <span class="bold">Alex Turner e Jamie Cook</span> montaram uma banda com seus amigos da escola, Andy Nicholson, que tocava baixo, e Matt Helders, que se tornou o baterista. 
             </p>
             <p>
-                Sob o nome <span class="bold">"Bang Bang"</span> , eles tocavam versões cover de bandas como Led Zeppelin e cantavam com sotaque de Sheffield. Após Alex assumir o vocal e a tarefa de escrever canções (ele na verdade já tinha algumas), eles mudaram o nome da banda para "Arctic Monkeys", tirado de um grupo do qual o pai do baterista Matt Helders fez parte nos anos 70. Segundo Turner, o nome foi passado de geração em geração, como uma receita.
+                Sob o nome <span class="bold">"Bang Bang"</span>, eles tocavam versões cover de bandas como Led Zeppelin e cantavam com sotaque de Sheffield. Após Alex assumir o vocal e a tarefa de escrever canções (ele na verdade já tinha algumas), eles mudaram o nome da banda para "Arctic Monkeys", tirado de um grupo do qual o pai do baterista Matt Helders fez parte nos anos 70. Segundo Turner, o nome foi passado de geração em geração, como uma receita.
             </p>
             <p>
                 Em maio de 2005 a banda lançou seu primeiro EP, <span class="bold">Five Minutes with Arctic Monkeys</span>, com apenas 1500 cópias em CD e 2000 em vinil de 7", mas também disponível na iTunes Music Store. Em junho assinaram contrato com a Domino Records e logo depois, tocaram no Carling Stage, palco dos festivais de Reading e Leeds reservado para bandas menos conhecidas.
             </p>
         </div>
+
         <div class="quotes-container">
             <blockquote>
-                "Realmente me irritava quando bandas vinham e diziam ‘nós temos CDs lá atrás para vender, três libras cada’ você pensa ‘F***-se, quem é que vocês pensam que são? ’". Deste modo o Arctic Monkeys começaram a distribuir em seus shows cópias grátis de seu CD demo, o que eventualmente os conduziu ao sucesso".
+                "Realmente me irritava quando bandas vinham e diziam ‘nós temos CDs lá atrás para vender, três libras cada’ você pensa ‘F***-se, quem é que vocês pensam que são?’". Deste modo o Arctic Monkeys começou a distribuir em seus shows cópias grátis de seu CD demo, o que eventualmente os conduziu ao sucesso.
             </blockquote>
-            <p>Alex Turner</p>
+            <p class="author">- Alex Turner</p>
         </div>
+
         <div class="curiosities-container">
             <h2>Curiosidades</h2>
             <ul>
-                <li>A banda cita como influência grupos como Oasis, The Strokes e Queens of the Stone Age. </li>
+                <li>A banda cita como influência grupos como Oasis, The Strokes e Queens of the Stone Age.</li>
                 <li>Em 19 de Fevereiro de 2014, o Arctic Monkeys ficou com os prêmios de melhor grupo e melhor disco do ano, com o AM, no Brit Awards.</li>
-                <li>Em 2008, Alex Turner, teve seu "caderninho" de músicas roubado, o que atrasou o inicio das gravações do terceiro álbum da banda.</li>
-                <li>Em uma pesquisa recente realizada pela rádio britânica XFM, Alex foi considerado o 10º melhor vocalista de todos os tempos.</li>
+                <li>Em 2008, Alex Turner teve seu "caderninho" de músicas roubado, o que atrasou o início das gravações do terceiro álbum da banda.</li>
+                <li>Em uma pesquisa realizada pela rádio britânica XFM, Alex foi considerado o 10º melhor vocalista de todos os tempos.</li>
             </ul>
         </div>
+
         <div class="quotes-container">
             <blockquote>
-               " Secrets I have held in my heart <br>
-Are harder to hide than I thought <br>
-Maybe I just wanna be yours <br>
-I wanna be yours, I wanna be yours <br>
-Wanna be yours <br>
-Wanna be yours <br>
-Wanna be yours"
+               "Secrets I have held in my heart <br>
+                Are harder to hide than I thought <br>
+                Maybe I just wanna be yours <br>
+                I wanna be yours..."
             </blockquote>
-            <p>I Wanna be yours</p>
-            <div class="img-bold">
-                <figure>
-                    <img src="https://www.tenhomaisdiscosqueamigos.com/wp-content/uploads/2022/05/arctic-monkeys-show-londres.jpg" alt="arctic monkeys in show">
-                    <figcaption>Show da banda.</figcaption>
-                </figure>
-                <br><br><br>
-                <figure>
-                    <img src="https://modern-legend.com/cdn/shop/products/ARTIC_MONKEYS_-_TRANQUILITY_480x.jpg?v=1529102688" alt="arctic monkeys in show">
-                    <figcaption>Capa do último álbum.</figcaption>
-                </figure>
-                <br><br><br><br><br>
-                <article id="video">
-                    <h3>Video: Clipe Four Out Of Five</h3>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/ifFJ84F4N6I?si=aDPqe3o3NUP0xZxC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    </article>
-            </div>
+            <p class="author">- Música: I Wanna Be Yours</p>
             
+            <div class="img-gallery">
+                <figure>
+                    <img src="https://www.tenhomaisdiscosqueamigos.com/wp-content/uploads/2022/05/arctic-monkeys-show-londres.jpg" alt="Arctic Monkeys em show">
+                    <figcaption>Show da banda em Londres.</figcaption>
+                </figure>
+                
+                <figure>
+                    <img src="https://modern-legend.com/cdn/shop/products/ARTIC_MONKEYS_-_TRANQUILITY_480x.jpg?v=1529102688" alt="Capa do álbum Tranquility Base Hotel & Casino">
+                    <figcaption>Capa do álbum Tranquility Base Hotel & Casino.</figcaption>
+                </figure>
+
+                <article id="video">
+                    <h3>Video Clipe</h3>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/6366dxFf-Os?si=D_wk4fqUKNr6hbVu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </article>
+            </div>
         </div>
     </div>
     
     <footer>
-        <p>&copy; Grungefox</p>
-        
+        <p>&copy; Grungefox - Tributo Arctic Monkeys</p>
     </footer>
 </body>
 </html>

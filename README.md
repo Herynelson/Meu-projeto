@@ -1,15 +1,15 @@
-# 🌐 Programação Web 
+Sou graduando de Análise e Desenvolvimento de Sistemas, apaixonado por tecnologia, inovação e soluções inteligentes. Estou cursando o 4º período na Universidade Pitágoras e busco minha primeira oportunidade na área de Tecnologia da Informação para aplicar e expandir meus conhecimentos.
 
-Este repositório contém exemplos, tutoriais e projetos sobre desenvolvimento web, abordando **HTML, CSS, JavaScript, frameworks e práticas modernas**.
+Com certificações em Ciência de Dados, Desenvolvimento Web, Lógica de Programação e Pacote Office, domino diversas linguagens de programação, como C#, Python, JavaScript, PHP e Java, além de ferramentas essenciais como SQL, React, Node.js e Power BI.
 
-## 📌 Conteúdo
-- 🏗 **HTML e CSS** – Estruturação e estilização de páginas web
-- 🎨 **Design Responsivo** – Técnicas de adaptação para diferentes dispositivos
-- ⚡ **JavaScript** – Manipulação do DOM, eventos e interatividade
-- 🚀 **Frameworks e Bibliotecas** – React, Vue.js e outros
-- 💾 **Back-end** – Noções básicas de Node.js, Express e bancos de dados
+Participei de projetos acadêmicos focados no desenvolvimento comunitário, aplicando análise de sistemas, algoritmos e estatística para criar soluções alinhadas aos Objetivos de Desenvolvimento Sustentável (ODS).
 
-## 🛠 Como usar?
-Clone este repositório para acessar os arquivos:
-```bash
-git clone https://github.com/seu-usuario/programacao-web.git
+Sou organizado, analítico e estou sempre disposto a aprender. Acredito que o crescimento é constante e que cada desafio é uma oportunidade de evolução. Valorizo o trabalho em equipe e a colaboração, buscando contribuir com criatividade, dedicação e ética em cada projeto.
+
+Quer saber mais? Bora conversar! 
+
+✉️email: herysoares644@gmail.com
+<!---
+Herynelson/Herynelson is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+You can click the Preview link to take a look at your changes.
+--->
